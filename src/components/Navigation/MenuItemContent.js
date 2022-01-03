@@ -4,7 +4,7 @@ export const MenuItemContent = ({ config }) => {
   return (
     <>
       <ListItemIcon>{config.icon}</ListItemIcon>
-      <ListItemText primary={config.title} sx={{ color: '#fff' }} />
+      <ListItemText primary={config.title}/>
     </>
   );
 };

@@ -67,7 +67,7 @@ export const TopNav = () => {
                 sx={{
                   marginLeft: '11px',
                   fontWeight: 'bold',
-                  color: '#000',
+                  color: '#424242',
                 }}
               >
                 Aydın Abbasov
@@ -82,7 +82,7 @@ export const TopNav = () => {
         open={navOpen}
         sx={{
           backgroundColor: '#fff',
-          color: '#000',
+          color: '#424242',
           mt: '63px',
           borderTop: '2px solid #e0e0e0',
           borderBottom: '2px solid #e0e0e0',

@@ -31,5 +31,12 @@ export const theme = createTheme({
         },
       },
     },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          color: '#fff',
+        },
+      },
+    },
   },
 });
