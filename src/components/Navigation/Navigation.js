@@ -1,55 +1,10 @@
-import React, { useState } from 'react';
-import {
-  styled,
-  Box,
-  Typography,
-  Drawer,
-  AppBar as MuiAppBar,
-  Toolbar,
-  IconButton,
-} from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
+import { styled, Drawer } from '@mui/material';
 import { Menu } from './Menu';
 // import { NavListItem } from './NavListItem';
 import { navigations } from '../../navigations';
+import { useNav } from '../../utils/providers/NavContextProvider';
 
 const drawerWidth = 240;
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -62,79 +17,27 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export const Navigation = () => {
-  const [navOpen, setNavOpen] = useState(false);
-
-  const handleToggleDrawer = () => {
-    setNavOpen((prev) => !prev);
-  };
+  const { navOpen } = useNav();
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
-        <AppBar position="fixed" open={navOpen}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleToggleDrawer}
-              edge="start"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          sx={{
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
             width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-          }}
-          variant="persistent"
-          anchor="left"
-          open={navOpen}
-        >
-          <DrawerHeader>logo</DrawerHeader>
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={navOpen}
+      >
+        <DrawerHeader>logo</DrawerHeader>
 
-          <Menu items={navigations}></Menu>
-        </Drawer>
-        <Main open={navOpen}>
-          <DrawerHeader />
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-          </Typography>
-          <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
-            ultrices sagittis orci a.
-          </Typography>
-        </Main>
-      </Box>
+        <Menu items={navigations}></Menu>
+      </Drawer>
     </>
   );
 };

@@ -2,6 +2,14 @@ import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#fff',
+          boxShadow: 'none',
+        },
+      },
+    },
     MuiDrawer: {
       styleOverrides: {
         paper: {
@@ -9,10 +17,17 @@ export const theme = createTheme({
         },
       },
     },
-    ListItemText: {
+    MuiTypography: {
       styleOverrides: {
         root: {
-          color: '#fff',
+          fontFamily: 'Arial',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
         },
       },
     },
