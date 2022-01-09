@@ -38,5 +38,12 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: '#424242',
+        },
+      },
+    },
   },
 });

@@ -1,8 +1,8 @@
-import { Box} from '@mui/material';
+import { Box } from '@mui/material';
 import './App.css';
-import { MainContent } from './components/MainContent/MainContent';
 import { Navigation } from './components/Navigation/Navigation';
 import { TopNav } from './components/TopNav/TopNav';
+import { ProfileSettings } from './pages/Settings/ProfileSettings';
 import { NavContextProvider } from './utils/providers/NavContextProvider';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
         <NavContextProvider>
           <TopNav />
           <Navigation />
-          <MainContent />
+          <ProfileSettings />
         </NavContextProvider>
       </Box>
     </>

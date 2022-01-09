@@ -76,30 +76,6 @@ export const TopNav = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
-      <AppBar
-        position="fixed"
-        open={navOpen}
-        sx={{
-          backgroundColor: '#fff',
-          color: '#424242',
-          mt: '63px',
-          borderTop: '2px solid #e0e0e0',
-          borderBottom: '2px solid #e0e0e0',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar sx={{ margin: '1px' }}>
-          <Typography
-            noWrap
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
-            Profil / Hesab parametrləri
-          </Typography>
-        </Toolbar>
-      </AppBar>
     </>
   );
 };

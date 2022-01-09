@@ -2,7 +2,7 @@ import { ReactComponent as HomeIcon } from './assets/nav.home-icon.svg';
 import { ReactComponent as ColleaguesIcon } from './assets/nav.colleagues-icon.svg';
 import { ReactComponent as NoticeIcon } from './assets/nav.notice-icon.svg';
 import { ReactComponent as RequestsIcon } from './assets/nav.requests-icon.svg';
-import { ReactComponent as SettingsIcons } from './assets/nav.settings-icon.svg';
+import { ReactComponent as SettingsIcon } from './assets/nav.settings-icon.svg';
 import { v4 as uuidv4 } from 'uuid';
 
 export const navigations = [
@@ -66,7 +66,7 @@ export const navigations = [
   },
   {
     id: uuidv4(),
-    icon: <SettingsIcons />,
+    icon: <SettingsIcon />,
     title: 'Parametrlər',
     items: [
       {
