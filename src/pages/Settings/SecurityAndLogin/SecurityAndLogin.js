@@ -14,7 +14,7 @@ export const SecurityAndLogin = () => {
           <Box
             sx={{
               width: '820px',
-              marginLeft: '25px',
+              marginLeft: '25px', 
               border: '1px solid #e0e0e0',
               borderRadius: '4px',
               display: 'flex',

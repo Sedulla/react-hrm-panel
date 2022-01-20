@@ -2,7 +2,9 @@ import { Box } from '@mui/material';
 import './App.css';
 import { Navigation } from './components/Navigation/Navigation';
 import { TopNav } from './components/TopNav/TopNav';
-import { ProfileSettings } from './pages/Settings/ProfileSettings';
+import { AddNewAnnouncement } from './pages/Announcement/AddNewAnnouncement';
+// import { ProfileSettings } from './pages/Settings/ProfileSettings';
+import { Announcement } from './pages/Announcement/Announcement';
 import { NavContextProvider } from './utils/providers/NavContextProvider';
 
 const App = () => {
@@ -12,7 +14,8 @@ const App = () => {
         <NavContextProvider>
           <TopNav />
           <Navigation />
-          <ProfileSettings />
+          {/* <ProfileSettings /> */}
+          <Announcement />
         </NavContextProvider>
       </Box>
     </>
