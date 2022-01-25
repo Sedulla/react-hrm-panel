@@ -1,8 +1,8 @@
 import { styled, Drawer } from '@mui/material';
 import { Menu } from './Menu';
 // import { NavListItem } from './NavListItem';
-import { navigations } from '../../navigations';
-import { useNav } from '../../utils/providers/NavContextProvider';
+import { navigations } from '../../constants/navigations';
+import { useNav } from '../../utilities/providers/NavContextProvider';
 
 const drawerWidth = 240;
 

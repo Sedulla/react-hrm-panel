@@ -8,7 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { useNav } from '../../utils/providers/NavContextProvider';
+import { useNav } from '../../utilities/providers/NavContextProvider';
 import { Box } from '@mui/system';
 
 const drawerWidth = 240;

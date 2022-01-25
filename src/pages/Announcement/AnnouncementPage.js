@@ -9,10 +9,10 @@ import {
   Button,
 } from '@mui/material';
 import { useState } from 'react';
-import { useNav } from '../../utils/providers/NavContextProvider';
+import { useNav } from '../../utilities/providers/NavContextProvider';
 import { AddNewAnnouncement } from './AddNewAnnouncement';
 import { DataTab } from './DataTab';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import { ViewAnnouncement } from './ViewAnnouncement';
 
 const drawerWidth = 240;
@@ -66,7 +66,7 @@ const AddButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const Announcement = () => {
+export const AnnouncementPage = () => {
   const { navOpen } = useNav();
   const [addNewAncmt, setAddNewAncmt] = useState(false);
 
@@ -118,18 +118,8 @@ export const Announcement = () => {
           </Link>
         </Toolbar>
       </AppBar>
-
-      <Main open={navOpen} sx={{ mt: '120px' }}>
-        <Routes>
-          <Route path="/announcements" element={<DataTab />}>
-            <Route path="view/:id" element={<ViewAnnouncement />} />
-          </Route>
-          <Route
-            path="/requests/announcement-add"
-            element={<AddNewAnnouncement />}
-          ></Route>
-        </Routes>
-      </Main>
+      <DataTab />
+      <Outlet />
     </>
   );
 };

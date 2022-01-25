@@ -9,7 +9,7 @@ import {
   Divider,
   Box,
 } from '@mui/material';
-import { useNav } from '../../utils/providers/NavContextProvider';
+import { useNav } from '../../utilities/providers/NavContextProvider';
 import { ReactComponent as SettingsIcon } from '../../assets/profile.settings-icon.svg';
 import { ReactComponent as SecurityIcon } from '../../assets/profile.security-icon.svg';
 import { AccountDetails } from '../Settings/AccountDetails/AccountDetails';
