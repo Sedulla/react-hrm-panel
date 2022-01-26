@@ -1,11 +1,7 @@
 import { styled } from '@mui/material';
-import { Outlet } from 'react-router-dom';
-import {
-  NavContextProvider,
-  useNav,
-} from '../utilities/providers/NavContextProvider';
+import { useNav } from '../utilities/providers/NavContextProvider';
 import { Navigation } from './Navigation/Navigation';
-import { TopNav } from './TopNav/TopNav';
+import { TopNav } from './Navigation/TopNav';
 
 const drawerWidth = 240;
 
@@ -27,7 +23,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   })
 );
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
   const { navOpen } = useNav();
 
   return (
@@ -36,7 +32,7 @@ export const Layout = () => {
       <Navigation />
 
       <Main open={navOpen} sx={{ mt: '120px' }}>
-        <Outlet />
+        {children}
       </Main>
     </>
   );

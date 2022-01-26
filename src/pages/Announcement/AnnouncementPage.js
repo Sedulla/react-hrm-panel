@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { useNav } from '../../utilities/providers/NavContextProvider';
 import { AddNewAnnouncement } from './AddNewAnnouncement';
-import { DataTab } from './DataTab';
+import { AnnouncementsTable } from './AnnouncementsTable';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import { ViewAnnouncement } from './ViewAnnouncement';
 
@@ -33,24 +33,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
 
 const AddButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#9B5AE1',
@@ -118,7 +100,7 @@ export const AnnouncementPage = () => {
           </Link>
         </Toolbar>
       </AppBar>
-      <DataTab />
+      <AnnouncementsTable />
       <Outlet />
     </>
   );
