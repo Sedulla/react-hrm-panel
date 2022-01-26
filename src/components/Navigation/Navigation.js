@@ -3,6 +3,7 @@ import { Menu } from './Menu';
 // import { NavListItem } from './NavListItem';
 import { navigations } from '../../constants/navigations';
 import { useNav } from '../../utilities/providers/NavContextProvider';
+import { TopNav } from './TopNav';
 
 const drawerWidth = 240;
 
@@ -35,9 +36,10 @@ export const Navigation = () => {
         open={navOpen}
       >
         <DrawerHeader>logo</DrawerHeader>
-
         <Menu items={navigations}></Menu>
       </Drawer>
+
+      <TopNav/>
     </>
   );
 };

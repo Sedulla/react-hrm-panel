@@ -118,7 +118,7 @@ export const DataTab = () => {
     <>
       <PageContent>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="announcements table">
+          <Table aria-label="announcements table">
             <TableHead>
               <TableRow>
                 <StyledTableCell align="left">Adı</StyledTableCell>
@@ -177,11 +177,6 @@ export const DataTab = () => {
                   </TableRow>
                 </>
               ))}
-              <DeleteConfirmDIalog
-                openDialog={openDialog}
-                handleClose={handleClose}
-                onDialog={areUSureDelete}
-              />
 
               {emptyRows > 0 && (
                 <TableRow style={{ height: 55.7 * emptyRows }}>
@@ -189,6 +184,11 @@ export const DataTab = () => {
                 </TableRow>
               )}
             </TableBody>
+            <DeleteConfirmDIalog
+              openDialog={openDialog}
+              handleClose={handleClose}
+              onDialog={areUSureDelete}
+            />
 
             <TableFooter>
               <TableRow>

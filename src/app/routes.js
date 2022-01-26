@@ -8,7 +8,7 @@ import { PrivateRoute } from '../components/PrivateRoute';
 import { Layout } from '../components/Layout';
 
 import { Navigation } from '../components/Navigation/Navigation';
-import { TopNav } from '../components/TopNav/TopNav';
+import { TopNav } from '../components/Navigation/TopNav';
 
 import { ViewAnnouncement } from '../pages/Announcement/ViewAnnouncement';
 import { AddNewAnnouncement } from '../pages/Announcement/AddNewAnnouncement';
@@ -44,23 +44,27 @@ const routes = (isAuthenticated) => [
       {
         path: '/announcements',
         element: (
-          <NavContextProvider>
-            <Layout>
-              <Route path="/announcements" element={<AnnouncementPage />}>
-                <Route
-                  path="/announcements/:id"
-                  element={<ViewAnnouncement />}
-                />
-              </Route>
+          <>
+            <Route
+              path="/announcements"
+              element={
+                <NavContextProvider>
+                  <Layout>
+                    <AnnouncementPage />
+                  </Layout>
+                </NavContextProvider>
+              }
+            >
+              <Route path="/announcements/:id" element={<ViewAnnouncement />} />
+            </Route>
 
-              <Route path="/announcements" element={<AnnouncementPage />}>
-                <Route
-                  path="/announcements/add"
-                  element={<AddNewAnnouncement />}
-                />
-              </Route>
-            </Layout>
-          </NavContextProvider>
+            <Route path="/announcements" element={<AnnouncementPage />}>
+              <Route
+                path="/announcements/add"
+                element={<AddNewAnnouncement />}
+              />
+            </Route>
+          </>
         ),
       },
 
