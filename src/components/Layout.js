@@ -1,9 +1,5 @@
 import { styled } from '@mui/material';
-import { Outlet } from 'react-router-dom';
-import {
-  NavContextProvider,
-  useNav,
-} from '../utilities/providers/NavContextProvider';
+import { useNav } from '../utilities/providers/NavContextProvider';
 import { Navigation } from './Navigation/Navigation';
 import { TopNav } from './Navigation/TopNav';
 

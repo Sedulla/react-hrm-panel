@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Box, IconButton, useTheme } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
-export function DataTabPagination(props) {
+export function AnnouncementsTabPagination(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -43,7 +43,7 @@ export function DataTabPagination(props) {
   );
 }
 
-DataTabPagination.propTypes = {
+AnnouncementsTabPagination.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,

@@ -15,16 +15,16 @@ import {
   Box,
   IconButton,
 } from '@mui/material';
-import { DataTabPagination } from './DataTabPagination';
 import {
   Visibility as VisibilityIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
 } from '@mui/icons-material';
-import { DeleteConfirmDIalog } from './DeleteConfirmDialog';
 import { Routes, Route, Link } from 'react-router-dom';
 import { EditAnnouncement } from './EditAnnouncement';
 import { ViewAnnouncement } from './ViewAnnouncement';
+import { AnnouncementsTabPagination } from './AnnouncementsTabPagination';
+import { DeleteConfirmDIalog } from './DeleteConfirmDialog';
 
 const PageContent = styled(Box)(({ theme }) => ({
   padding: '26px 16px 16px 16px',
@@ -45,7 +45,7 @@ function newData(isOpen, id, title, desc, author, date) {
   return { isOpen, id, title, desc, author, date };
 }
 
-export const DataTab = () => {
+export const AnnouncementsTable = () => {
   const [rows, setRows] = useState([
     newData(false, uuid(), 'Title 1', 'Desc 1', 'Author 1', '01/01/2020'),
     newData(false, uuid(), 'Title 2', 'Desc 2', 'Author 2', '02/02/2020'),
@@ -94,20 +94,15 @@ export const DataTab = () => {
   };
 
   const idRowRef = useRef();
-  const titleRowRef = useRef();
 
   const handleDelete = (id) => {
     idRowRef.current = id;
   };
 
-  const handleTitle = (title) => {
-    titleRowRef.current = title;
-  };
-
   const areUSureDelete = (choose) => {
     if (choose) {
       const newRows = [...rows];
-      setRows(newRows.filter((r) => r.id !== titleRowRef.current));
+      setRows(newRows.filter((r) => r.id !== idRowRef.current));
       handleClose();
     } else {
       handleClose();
@@ -168,7 +163,6 @@ export const DataTab = () => {
                         onClick={() => {
                           handleClickOpen();
                           handleDelete(row.id);
-                          handleTitle(row.title);
                         }}
                       >
                         <DeleteIcon sx={{ color: '#616161' }} />
@@ -210,7 +204,7 @@ export const DataTab = () => {
                   }}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={DataTabPagination}
+                  ActionsComponent={AnnouncementsTabPagination}
                 />
               </TableRow>
             </TableFooter>

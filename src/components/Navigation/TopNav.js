@@ -76,6 +76,8 @@ export const TopNav = () => {
           </Box>
         </Toolbar>
       </AppBar>
+
+      <TopNav />
     </>
   );
 };

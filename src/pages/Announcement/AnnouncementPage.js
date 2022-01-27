@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { useNav } from '../../utilities/providers/NavContextProvider';
 import { AddNewAnnouncement } from './AddNewAnnouncement';
-import { DataTab } from './DataTab';
+import { AnnouncementsTable } from './AnnouncementsTable';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import { ViewAnnouncement } from './ViewAnnouncement';
 import { EditAnnouncement } from './EditAnnouncement';
@@ -101,7 +101,12 @@ export const AnnouncementPage = () => {
           </Link>
         </Toolbar>
       </AppBar>
+<<<<<<< HEAD
       <DataTab />
+=======
+      <AnnouncementsTable />
+      <Outlet />
+>>>>>>> requests
     </>
   );
 };

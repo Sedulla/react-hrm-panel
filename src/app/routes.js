@@ -2,13 +2,18 @@ import { lazy } from 'react';
 import { Route, Navigate } from 'react-router-dom';
 
 import { NavContextProvider } from '../utilities/providers/NavContextProvider';
-import { LoginPage } from '../pages/Login/LoginPage';
+// import { LoginPage } from '../pages/Login/LoginPage';
 
-import { PrivateRoute } from '../components/PrivateRoute';
+// import { PrivateRoute } from '../components/PrivateRoute';
 import { Layout } from '../components/Layout';
 
+<<<<<<< HEAD
 import { Navigation } from '../components/Navigation/Navigation';
 import { TopNav } from '../components/Navigation/TopNav';
+=======
+// import { Navigation } from '../components/Navigation/Navigation';
+// import { TopNav } from '../components/Navigation/TopNav';
+>>>>>>> requests
 
 import { ViewAnnouncement } from '../pages/Announcement/ViewAnnouncement';
 import { AddNewAnnouncement } from '../pages/Announcement/AddNewAnnouncement';
@@ -16,6 +21,7 @@ import { AddNewAnnouncement } from '../pages/Announcement/AddNewAnnouncement';
 import { HomePage } from '../pages/HomePage';
 
 import { AnnouncementPage } from '../pages/Announcement/AnnouncementPage';
+// import { RequestsPage } from '../pages/Requests/RequestsPage';
 
 // const AnnouncementPage = lazy(() =>
 //   import('../pages/Announcement/Announcement')
@@ -40,10 +46,12 @@ const routes = (isAuthenticated) => [
     ),
     children: [
       { path: '/homepage', element: <HomePage /> },
-      { path: '/announcements', element: <AnnouncementPage /> },
+      { path: '/announcementsw', element: <AnnouncementPage /> },
+
       {
-        path: '/announcements',
+        path: '/announcementse',
         element: (
+<<<<<<< HEAD
           <>
             <Route
               path="/announcements"
@@ -65,6 +73,25 @@ const routes = (isAuthenticated) => [
               />
             </Route>
           </>
+=======
+          <NavContextProvider>
+            <Layout>
+              <Route path="/announcementse" element={<AnnouncementPage />}>
+                <Route
+                  path="/announcements/:id"
+                  element={<ViewAnnouncement />}
+                />
+              </Route>
+
+              <Route path="/announcementsa" element={<AnnouncementPage />}>
+                <Route
+                  path="/announcements/add"
+                  element={<AddNewAnnouncement />}
+                />
+              </Route>
+            </Layout>
+          </NavContextProvider>
+>>>>>>> requests
         ),
       },
 
