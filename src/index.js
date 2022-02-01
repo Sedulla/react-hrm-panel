@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/app/App';
-import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { theme } from '../src/theme/theme';
 import { BrowserRouter } from 'react-router-dom';
-
-import { store } from '../src/app/store';
-import { Provider } from 'react-redux';
+import * as serviceWorker from './serviceWorker';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  <StyledEngineProvider injectFirst>
+    <BrowserRouter>
+      <CssBaseline />
+      <App />
+    </BrowserRouter>
+  </StyledEngineProvider>,
   document.getElementById('root')
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+serviceWorker.unregister();

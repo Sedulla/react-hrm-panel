@@ -4,6 +4,7 @@
     "node_modules": true,
     "README.md": true,
     ".gitignore": true,
-    "yarn.lock": true
+    "yarn.lock": true,
+    "src\\app\\views\\settings\\ProfileSettings.js": true
   }
 }

@@ -1,0 +1,69 @@
+import { Box, styled } from '@mui/material';
+import { useNav } from '../contexts/NavContextProvider';
+import { SideNav } from './Sidenav/Sidenav';
+import { TopNav } from './Topnav/TopNav';
+import { Loadable } from './Loadable/Loadable';
+import { Outlet } from 'react-router-dom';
+
+const LayoutRoot = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  background: theme.palette.background.default,
+}));
+
+const LayoutContainer = styled(Box)(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  flexGrow: '1',
+  flexDirection: 'column',
+  verticalAlign: 'top',
+  // marginLeft: width,
+  position: 'relative',
+  overflow: 'hidden',
+  transition: 'all 0.3s ease',
+}));
+
+const ContentBox = styled(Box)(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+}));
+
+const drawerWidth = 240;
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    position: 'sticky',
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
+
+export const AppLayout = ({ children }) => {
+  const { navOpen } = useNav();
+
+  return (
+    <>
+      <LayoutRoot>
+        <TopNav />
+        <SideNav />
+        <Main open={navOpen} sx={{ mt: '120px' }}>
+          <Loadable>{children}</Loadable>
+        </Main>
+      </LayoutRoot>
+    </>
+  );
+};
