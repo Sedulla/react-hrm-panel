@@ -1,10 +1,9 @@
 import { styled, Drawer } from '@mui/material';
 import { Menu } from './Menu';
 // import { NavListItem } from './NavListItem';
-import { navigations } from '../../utilities/constants/navigations';
+import { navigations } from '../../utilities/navigations';
 import { useNav } from '../../contexts/NavContextProvider';
-
-const drawerWidth = 240;
+import { drawerWidth } from '../../utilities/constants';
 
 const DrawerHeader = styled('div')(({ theme, open }) => ({
   display: 'flex',

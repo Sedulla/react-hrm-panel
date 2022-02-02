@@ -3,35 +3,12 @@ import { useNav } from '../contexts/NavContextProvider';
 import { SideNav } from './Sidenav/Sidenav';
 import { TopNav } from './Topnav/TopNav';
 import { Loadable } from './Loadable/Loadable';
-import { Outlet } from 'react-router-dom';
+import { drawerWidth } from '../utilities/constants';
 
 const LayoutRoot = styled(Box)(({ theme }) => ({
   display: 'flex',
   background: theme.palette.background.default,
 }));
-
-const LayoutContainer = styled(Box)(({ theme }) => ({
-  height: '100vh',
-  display: 'flex',
-  flexGrow: '1',
-  flexDirection: 'column',
-  verticalAlign: 'top',
-  // marginLeft: width,
-  position: 'relative',
-  overflow: 'hidden',
-  transition: 'all 0.3s ease',
-}));
-
-const ContentBox = styled(Box)(({ theme }) => ({
-  height: '100vh',
-  display: 'flex',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-}));
-
-const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({

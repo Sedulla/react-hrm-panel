@@ -1,4 +1,3 @@
-import { Edit as EditIcon } from '@mui/icons-material';
 import {
   Box,
   styled,
@@ -10,6 +9,7 @@ import {
   IconButton,
 } from '@mui/material';
 import { useState } from 'react';
+import { Edit as EditIcon } from '@mui/icons-material';
 import { EditAnnouncement } from './EditAnnouncement';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
@@ -61,6 +61,7 @@ export const ViewAnnouncement = () => {
                   />
                 </IconButton>
               </FormHeader>
+
               <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
                 <TableBody>
                   <TableRow

@@ -1,4 +1,4 @@
-import { Add as AddIcon, KeyboardArrowDown } from '@mui/icons-material';
+import { useState } from 'react';
 import {
   AppBar as MuiAppBar,
   styled,
@@ -7,16 +7,15 @@ import {
   Breadcrumbs,
   Link as MuiLink,
   Button,
+  Box,
 } from '@mui/material';
-import { useState } from 'react';
-import { useNav } from '../../contexts/NavContextProvider';
-import { AddNewAnnouncement } from './shared/AddNewAnnouncement';
+import { Add as AddIcon, KeyboardArrowDown } from '@mui/icons-material';
 import { AnnouncementsTable } from './shared/AnnouncementsTable';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
-import { ViewAnnouncement } from './shared/ViewAnnouncement';
-import { EditAnnouncement } from './shared/EditAnnouncement';
+import { useNav } from '../../contexts/NavContextProvider';
+import { Link } from 'react-router-dom';
+import { drawerWidth } from '../../utilities/constants';
 
-const drawerWidth = 240;
+const PageContent = styled(Box)(({ theme }) => ({}));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -60,49 +59,50 @@ export const AnnouncementPage = () => {
 
   return (
     <>
-      <AppBar
-        open={navOpen}
-        position="fixed"
-        sx={{
-          backgroundColor: '#fff',
-          color: '#424242',
-          mt: '63px',
-          borderTop: '2px solid #e0e0e0',
-          borderBottom: '2px solid #e0e0e0',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div role="presentation" onClick={handleClick}>
-            <Breadcrumbs aria-label="breadcrumb">
-              <MuiLink
-                underline="hover"
-                color="inherit"
-                href="/"
-                sx={{
-                  fontWeight: 'bold',
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'row-reverse',
-                }}
-              >
-                <KeyboardArrowDown sx={{ ml: 0.5 }} />
-                Elanlar
-              </MuiLink>
-              <Typography color="text.primary"> Elan</Typography>
-            </Breadcrumbs>
-          </div>
+      <PageContent>
+        <AppBar
+          open={navOpen}
+          position="fixed"
+          sx={{
+            backgroundColor: '#fff',
+            color: '#424242',
+            mt: '63px',
+            borderTop: '2px solid #e0e0e0',
+            borderBottom: '2px solid #e0e0e0',
+            boxShadow: 'none',
+          }}
+        >
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div role="presentation" onClick={handleClick}>
+              <Breadcrumbs aria-label="breadcrumb">
+                <MuiLink
+                  underline="hover"
+                  color="inherit"
+                  href="/"
+                  sx={{
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row-reverse',
+                  }}
+                >
+                  <KeyboardArrowDown sx={{ ml: 0.5 }} />
+                  Elanlar
+                </MuiLink>
+                <Typography color="text.primary"> Elan</Typography>
+              </Breadcrumbs>
+            </div>
 
-          <Link className="link" to="/requests/announcement-add">
-            <AddButton onClick={() => setAddNewAncmt(!addNewAncmt)}>
-              <AddIcon sx={{ mr: 0.6 }} />
-              Əlavə et
-            </AddButton>
-          </Link>
-        </Toolbar>
-      </AppBar>
-      <AnnouncementsTable />
-      <Outlet />
+            <Link className="link" to="/requests/announcement-add">
+              <AddButton onClick={() => setAddNewAncmt(!addNewAncmt)}>
+                <AddIcon sx={{ mr: 0.6 }} />
+                Əlavə et
+              </AddButton>
+            </Link>
+          </Toolbar>
+        </AppBar>
+        <AnnouncementsTable />
+      </PageContent>
     </>
   );
 };

@@ -60,7 +60,7 @@ const FormInputsGroup = styled(Box)(({ theme }) => ({
   gap: '11px',
 }));
 
-const FormButtonsBox = styled(Box)(({ theme }) => ({
+const FormFooter = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-end',
@@ -171,10 +171,10 @@ export const AddNewAnnouncement = () => {
                 </Select>
               </FormControl>
             </FormInputsGroup>
-            <FormButtonsBox>
+            <FormFooter>
               <SaveButton>Yadda Saxla</SaveButton>
               <ConcludeButton>Sonlandır</ConcludeButton>
-            </FormButtonsBox>
+            </FormFooter>
           </FormContainer>
         </Container>
       </PageContent>

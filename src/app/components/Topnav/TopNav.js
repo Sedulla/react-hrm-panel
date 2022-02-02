@@ -10,8 +10,7 @@ import {
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { useNav } from '../../contexts/NavContextProvider';
 import { Box } from '@mui/system';
-
-const drawerWidth = 240;
+import { drawerWidth } from '../../utilities/constants';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

@@ -11,8 +11,9 @@ import {
   TablePagination,
   Paper,
   styled,
-  Box,
   IconButton,
+  Menu,
+  MenuItem,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -20,7 +21,7 @@ import {
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from '@reduxjs/toolkit';
-import { UsersTabPagination } from './UsersTabPagination';
+import { TabPagination } from './TabPagination';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,35 +34,39 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-function newData(isOpen, id, title, desc, author, date) {
-  return { isOpen, id, title, desc, author, date };
+function newData(id, title, desc, date) {
+  return { id, title, desc, date };
 }
 
 export const UsersTable = () => {
   const [rows, setRows] = useState([
-    newData(false, nanoid(), 'Title 1', 'Desc 1', 'Author 1', '01/01/2020'),
-    newData(false, nanoid(), 'Title 2', 'Desc 2', 'Author 2', '02/02/2020'),
-    newData(false, nanoid(), 'Title 3', 'Desc 3', 'Author 3', '03/03/2020'),
-    newData(false, nanoid(), 'Title 4', 'Desc 4', 'Author 4', '04/04/2020'),
-    newData(false, nanoid(), 'Title 5', 'Desc 5', 'Author 5', '05/05/2020'),
-    newData(false, nanoid(), 'Title 6', 'Desc 6', 'Author 6', '06/06/2020'),
-    newData(false, nanoid(), 'Title 7', 'Desc 7', 'Author 7', '07/07/2020'),
-    newData(false, nanoid(), 'Title 8', 'Desc 8', 'Author 8', '08/08/2020'),
-    newData(false, nanoid(), 'Title 9', 'Desc 9', 'Author 9', '09/09/2020'),
-    newData(false, nanoid(), 'Title 10', 'Desc 10', 'Author 10', '10/10/2020'),
-    newData(false, nanoid(), 'Title 11', 'Desc 11', 'Author 11', '11/11/2020'),
-    newData(false, nanoid(), 'Title 12', 'Desc 12', 'Author 12', '12/12/2020'),
-    newData(false, nanoid(), 'Title 13', 'Desc 13', 'Author 13', '13/13/2020'),
-    newData(false, nanoid(), 'Title 14', 'Desc 14', 'Author 14', '14/14/2020'),
-    newData(false, nanoid(), 'Title 15', 'Desc 15', 'Author 15', '15/15/2020'),
-    newData(false, nanoid(), 'Title 16', 'Desc 16', 'Author 16', '16/16/2020'),
-    newData(false, nanoid(), 'Title 17', 'Desc 17', 'Author 17', '17/17/2020'),
-    newData(false, nanoid(), 'Title 18', 'Desc 18', 'Author 18', '18/18/2020'),
-    newData(false, nanoid(), 'Title 19', 'Desc 19', 'Author 19', '19/19/2020'),
+    newData(nanoid(), 'Title 1', 'Desc 1', '01/01/2020'),
+    newData(nanoid(), 'Title 2', 'Desc 2', '02/02/2020'),
+    newData(nanoid(), 'Title 3', 'Desc 3', '03/03/2020'),
+    newData(nanoid(), 'Title 4', 'Desc 4', '04/04/2020'),
+    newData(nanoid(), 'Title 5', 'Desc 5', '05/05/2020'),
+    newData(nanoid(), 'Title 6', 'Desc 6', '06/06/2020'),
+    newData(nanoid(), 'Title 7', 'Desc 7', '07/07/2020'),
+    newData(nanoid(), 'Title 8', 'Desc 8', '08/08/2020'),
+    newData(nanoid(), 'Title 9', 'Desc 9', '09/09/2020'),
+    newData(nanoid(), 'Title 10', 'Desc 10', '10/10/2020'),
+    newData(nanoid(), 'Title 11', 'Desc 11', '11/11/2020'),
+    newData(nanoid(), 'Title 12', 'Desc 12', '12/12/2020'),
+    newData(nanoid(), 'Title 13', 'Desc 13', '13/13/2020'),
+    newData(nanoid(), 'Title 14', 'Desc 14', '14/14/2020'),
+    newData(nanoid(), 'Title 15', 'Desc 15', '15/15/2020'),
+    newData(nanoid(), 'Title 16', 'Desc 16', '16/16/2020'),
+    newData(nanoid(), 'Title 17', 'Desc 17', '17/17/2020'),
+    newData(nanoid(), 'Title 18', 'Desc 18', '18/18/2020'),
+    newData(nanoid(), 'Title 19', 'Desc 19', '19/19/2020'),
+    newData(nanoid(), 'Title 20', 'Desc 19', '19/19/2020'),
+    newData(nanoid(), 'Title 21', 'Desc 19', '19/19/2020'),
   ]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -76,18 +81,22 @@ export const UsersTable = () => {
     setPage(0);
   };
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} aria-label="announcements table">
+        <Table aria-label="announcements table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">Adı</StyledTableCell>
-              <StyledTableCell align="left">Təsviri</StyledTableCell>
-              <StyledTableCell align="left">Əlavə edən şəxs</StyledTableCell>
-              <StyledTableCell align="left">
-                Əlavə edilmə tarixi
-              </StyledTableCell>
+              <StyledTableCell align="left">Ad Soyad Ata</StyledTableCell>
+              <StyledTableCell align="left">Tarix</StyledTableCell>
+              <StyledTableCell align="left">Status</StyledTableCell>
               <StyledTableCell align="left"></StyledTableCell>
             </TableRow>
           </TableHead>
@@ -99,32 +108,52 @@ export const UsersTable = () => {
             ).map((row) => (
               <>
                 <TableRow key={row.id} id={row.id}>
-                  <TableCell component="th" scope="row" style={{ width: 160 }}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    style={{ minWidth: '308px' }}
+                  >
                     {row.title}
                   </TableCell>
-                  <TableCell style={{ width: 450 }} align="left">
+                  <TableCell align="left" style={{ minWidth: '308px' }}>
                     {row.desc}
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="left">
-                    {row.author}
-                  </TableCell>
-                  <TableCell style={{ width: 160 }} align="left">
+                  <TableCell align="left" style={{ minWidth: '308px' }}>
                     {row.date}
                   </TableCell>
-                  <TableCell style={{ width: 70 }} align="left">
+                  <TableCell align="left">
                     <IconButton onClick={() => navigate('/setting')}>
                       <VisibilityIcon sx={{ color: '#616161' }} />
                     </IconButton>
-                    <IconButton onClick={() => navigate('/setting')}>
+                    <IconButton
+                      id="basic-button"
+                      aria-controls="basic-menu"
+                      aria-haspopup="true"
+                      aria-expanded={open ? 'true' : undefined}
+                      onClick={handleClick}
+                    >
                       <MoreHorizIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
               </>
             ))}
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={handleClose}>Sənədi yüklə</MenuItem>
+              <MenuItem onClick={handleClose}>Redaktə et</MenuItem>
+              <MenuItem onClick={handleClose}>Sil</MenuItem>
+            </Menu>
 
             {emptyRows > 0 && (
-              <TableRow style={{ height: 55.7 * emptyRows }}>
+              <TableRow style={{ height: 67 * emptyRows }}>
                 <TableCell colSpan={6} />
               </TableRow>
             )}
@@ -149,7 +178,7 @@ export const UsersTable = () => {
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={UsersTabPagination}
+                ActionsComponent={TabPagination}
               />
             </TableRow>
           </TableFooter>

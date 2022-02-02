@@ -15,8 +15,7 @@ import { ReactComponent as SecurityIcon } from '../../assets/profile.security-ic
 import { AccountDetails } from './shared/AccountDetails/AccountDetails';
 import { SecurityAndLogin } from './shared/SecurityAndLogin/SecurityAndLogin';
 import { Routes, Route, Link } from 'react-router-dom';
-
-const drawerWidth = 240;
+import { drawerWidth } from '../../utilities/constants';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
