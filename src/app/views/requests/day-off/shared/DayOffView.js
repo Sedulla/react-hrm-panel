@@ -13,8 +13,8 @@ import {
   TableRow,
 } from '@mui/material';
 import { Info as InfoIcon, KeyboardArrowDown } from '@mui/icons-material';
-import { PagesNav } from '../../../components/styles/PagesNav.styled';
-import { useNav } from '../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 
@@ -63,7 +63,7 @@ const FormHeader = styled(Box)(({ theme }) => ({
   padding: '0px 20px',
 }));
 
-export const ViewRequest = () => {
+export const DayOffView = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',

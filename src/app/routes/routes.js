@@ -10,7 +10,6 @@ import { LoginPage } from '../views/sessions/login/LoginPage';
 
 import { HomePage } from '../views/homepage/HomePage';
 import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
-import { RequestsPage } from '../views/requests/RequestsPage';
 
 // import { PrivateRoute } from '../components/PrivateRoute';
 // const NotFound = lazy(() => import('./pages/not-found'));

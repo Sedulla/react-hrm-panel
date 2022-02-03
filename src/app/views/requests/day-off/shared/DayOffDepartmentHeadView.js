@@ -24,8 +24,8 @@ import {
   KeyboardArrowDown,
   Edit as EditIcon,
 } from '@mui/icons-material';
-import { PagesNav } from '../../../components/styles/PagesNav.styled';
-import { useNav } from '../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 
@@ -102,7 +102,7 @@ const DialogCloseButton = styled(Button)(({ theme }) => ({
   borderRadius: '4px',
 }));
 
-export const DepartmentHeadView = () => {
+export const DayOffDepartmentHeadView = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',

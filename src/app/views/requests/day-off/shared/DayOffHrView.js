@@ -19,8 +19,8 @@ import {
   InfoOutlined as InfoOutlinedIcon,
   KeyboardArrowDown,
 } from '@mui/icons-material';
-import { PagesNav } from '../../../components/styles/PagesNav.styled';
-import { useNav } from '../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 
@@ -74,7 +74,7 @@ const FormHeader = styled(Box)(({ theme }) => ({
 
 const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
 
-export const HrView = () => {
+export const DayOffHrView = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',

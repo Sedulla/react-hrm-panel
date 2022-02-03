@@ -17,8 +17,8 @@ import {
 import { KeyboardArrowDown } from '@mui/icons-material';
 import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { PagesNav } from '../../../components/styles/PagesNav.styled';
-import { useNav } from '../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 
@@ -90,7 +90,7 @@ const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const AddNewRequest = () => {
+export const NewDayOff = () => {
   const [value, setValue] = useState(new Date());
   const { navOpen } = useNav();
 

@@ -14,9 +14,9 @@ import {
   KeyboardArrowDown,
   Search as SearchIcon,
 } from '@mui/icons-material';
-import { useNav } from '../../contexts/NavContextProvider';
+import { useNav } from '../../../contexts/NavContextProvider';
 import { Link } from 'react-router-dom';
-import { drawerWidth } from '../../utilities/constants';
+import { drawerWidth } from '../../../utilities/constants';
 import { UsersTable } from './shared/UsersTable';
 import { SearchRequest } from './shared/SearchRequest';
 
@@ -76,7 +76,7 @@ const Container = styled(Box)(({ theme }) => ({
 
 const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
 
-export const RequestsPage = () => {
+export const DayOffPage = () => {
   const { navOpen } = useNav();
   const [isVisibleSearch, setIsVisibleSearch] = useState(false);
 

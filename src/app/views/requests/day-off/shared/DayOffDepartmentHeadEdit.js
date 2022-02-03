@@ -22,8 +22,8 @@ import {
 } from '@mui/icons-material';
 import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { useNav } from '../../../contexts/NavContextProvider';
-import { PagesNav } from '../../../components/styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../components/styles/PagesNav.styled';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 
@@ -106,7 +106,7 @@ const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const DepartmentHeadEdit = () => {
+export const DayOffDepartmentHeadEdit = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
