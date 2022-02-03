@@ -1,56 +1,37 @@
 import { NavContextProvider } from '../contexts/NavContextProvider';
-// import { LoginPage } from '../pages/Login/LoginPage';
-
-// import { PrivateRoute } from '../components/PrivateRoute';
-
-// import { Navigation } from '../components/Navigation/Navigation';
-// import { TopNav } from '../components/Navigation/TopNav';
-
-// import { ViewAnnouncement } from '../pages/Announcement/ViewAnnouncement';
-// import { AddNewAnnouncement } from '../pages/Announcement/AddNewAnnouncement';
-
-// import { HomePage } from './views/homepage/HomePage';
-
-// import { AnnouncementPage } from '../pages/Announcement/AnnouncementPage';
-// import { RequestsPage } from '../pages/Requests/RequestsPage';
-
-// const AnnouncementPage = lazy(() =>
-//   import('../pages/Announcement/Announcement')
-// );
-
-// const NotFound = lazy(() => import('./pages/not-found'));
-
-// import AuthGuard from './auth/AuthGuard';
+import { AppLayout } from '../components/AppLayout';
 
 import { announcementsRoutes } from '../views/announcements/AnnouncementsRoutes';
 import { settingsRoutes } from '../views/settings/SettingsRoutes';
 import { requestsRoutes } from '../views/requests/RequestsRoutes';
-import { AppLayout } from '../components/AppLayout';
+import { sessionRoutes } from '../views/sessions/SessionRoutes';
+
+import { LoginPage } from '../views/sessions/login/LoginPage';
 
 import { HomePage } from '../views/homepage/HomePage';
 import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
-import { Route } from 'react-router-dom';
 import { RequestsPage } from '../views/requests/RequestsPage';
+
+// import { PrivateRoute } from '../components/PrivateRoute';
+// const NotFound = lazy(() => import('./pages/not-found'));
+import { AuthGuard } from '../auth/AuthGuard';
+import { NotFoundPage } from '../views/sessions/NotFoundPage';
 
 export const AllPages = () => {
   const all_routes = [
     {
-      path: '/homepage',
+      path: '/',
       element: (
-        // <AuthGuard>
-        <NavContextProvider>
-          <AppLayout>
-            <RequestsPage/>
-          </AppLayout>
-        </NavContextProvider>
-        // </AuthGuard>
+        <AuthGuard>
+          <AppLayout />
+        </AuthGuard>
       ),
-      // children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
+      children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
     },
-    // ...sessionRoutes,
+    ...sessionRoutes,
     {
       path: '*',
-      element: <div>Not Found</div>,
+      element: <NotFoundPage />,
     },
   ];
 

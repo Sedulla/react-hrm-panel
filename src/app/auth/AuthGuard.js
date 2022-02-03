@@ -1,13 +1,10 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
-const AuthGuard = ({ children }) => {
+export const AuthGuard = ({ children }) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  let authenticated = isAuthenticated;
+  let authenticated = false;
 
-  return <>{authenticated ? children : navigate('/session/signin')}</>;
+  return <>{authenticated ? children : navigate('/session/login')}</>;
 };
-
-export default AuthGuard;

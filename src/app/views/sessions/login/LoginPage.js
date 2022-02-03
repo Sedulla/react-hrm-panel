@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import {
   styled,
   Box,
@@ -14,14 +14,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  clearState,
-  loginUser,
-  selectUser,
-  togglePasswordVisibility,
-} from '../../features/auth/userSlice';
+import { togglePasswordVisibility } from '../../../redux/auth/userSlice';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../../hooks/useAuth';
+import { useDispatch } from 'react-redux';
 
 const PageContent = styled(Box)(({ theme }) => ({
   backgroundColor: '#E5E5E5',
@@ -88,8 +84,6 @@ const schema = yup.object().shape({
 });
 
 export const LoginPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -97,32 +91,27 @@ export const LoginPage = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { isSuccess, isError, errorMessage, password } =
-    useSelector(selectUser);
 
-  const onSubmit = (data) => {
-    dispatch(loginUser(data));
-  };
+  const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    userName: 'admin',
+    password: 'admin',
+  });
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
-
-  // Update UI based on the redux state(Success or Error)
-  useEffect(() => {
-    if (isError) {
-      toast.error(errorMessage);
-      dispatch(clearState());
-    }
-
-    if (isSuccess) {
-      dispatch(clearState());
-      toast.success('Login Successful');
+  const handleFormSubmit = async (event) => {
+    setLoading(true);
+    try {
+      await login(userInfo.userName, userInfo.password);
       navigate('/');
+    } catch (e) {
+      console.log(e);
+      toast.error(e.message);
+      setLoading(false);
     }
-  }, [dispatch, isError, isSuccess, errorMessage, navigate]);
+  };
 
   return (
     <>
@@ -130,7 +119,7 @@ export const LoginPage = () => {
         <Container>
           <LeftContainer>Logo</LeftContainer>
           <RightContainer>
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <form action="" onSubmit={handleSubmit(handleFormSubmit)}>
               <FormControl variant="outlined">
                 <InputLabel htmlFor="user-name">İstifadəçi adı</InputLabel>
                 <OutlinedInput
@@ -147,7 +136,7 @@ export const LoginPage = () => {
                   sx={{ width: '322px', height: '52px', mb: '1rem' }}
                   id="password"
                   autoComplete="password"
-                  type={password.show ? 'text' : 'password'}
+                  type={userInfo.password.show ? 'text' : 'password'}
                   {...register('password')}
                   endAdornment={
                     <InputAdornment position="end">
@@ -158,13 +147,18 @@ export const LoginPage = () => {
                         }}
                         edge="end"
                       >
-                        {password.show ? <Visibility /> : <VisibilityOff />}
+                        {userInfo.password.show ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   }
                   label="Password"
                 />
               </FormControl>
+
               <LoginButton type="submit">Daxil ol</LoginButton>
             </form>
           </RightContainer>
