@@ -13,7 +13,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { Info as InfoIcon, KeyboardArrowDown } from '@mui/icons-material';
-import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
 
 const PageContent = styled(Box)(({ theme }) => ({}));

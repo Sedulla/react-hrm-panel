@@ -15,6 +15,7 @@ import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
 // const NotFound = lazy(() => import('./pages/not-found'));
 import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
+import { NewBusinessTrip } from '../views/requests/business-trip/shared/NewBusinessTrip';
 
 export const AllPages = () => {
   const all_routes = [
@@ -22,7 +23,9 @@ export const AllPages = () => {
       path: '/',
       element: (
         <AuthGuard>
-          <AppLayout />
+          <NavContextProvider>
+            <AppLayout />
+          </NavContextProvider>
         </AuthGuard>
       ),
       children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
@@ -31,6 +34,16 @@ export const AllPages = () => {
     {
       path: '*',
       element: <NotFoundPage />,
+    },
+    {
+      path: '/homepage',
+      element: (
+        <NavContextProvider>
+          <AppLayout>
+            <NewBusinessTrip />
+          </AppLayout>
+        </NavContextProvider>
+      ),
     },
   ];
 

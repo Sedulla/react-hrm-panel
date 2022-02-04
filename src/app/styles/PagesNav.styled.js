@@ -1,5 +1,5 @@
 import { styled, AppBar } from '@mui/material';
-import { drawerWidth } from '../../utilities/constants';
+import { drawerWidth } from '../utilities/constants';
 
 export const PagesNav = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

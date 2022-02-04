@@ -23,7 +23,7 @@ import {
 import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useNav } from '../../../../contexts/NavContextProvider';
-import { PagesNav } from '../../../../components/styles/PagesNav.styled';
+import { PagesNav } from '../../../../styles/PagesNav.styled';
 
 const PageContent = styled(Box)(({ theme }) => ({}));
 

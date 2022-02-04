@@ -13,6 +13,7 @@ import {
   TextField,
   Breadcrumbs,
   Link as MuiLink,
+  OutlinedInput,
 } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
 import { LocalizationProvider, DatePicker } from '@mui/lab';
@@ -90,7 +91,7 @@ const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const NewDayOff = () => {
+export const NewBusinessTrip = () => {
   const [value, setValue] = useState(new Date());
   const { navOpen } = useNav();
 
@@ -170,33 +171,55 @@ export const NewDayOff = () => {
           <FormContainer>
             <FormHeader>Sorğunun formalaşdırılması</FormHeader>
             <FormInputsGroup>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  views={['day', 'month', 'year']}
-                  label="Day off tarixi"
-                  inputFormat="MM/dd/yyyy"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      helperText={null}
-                      sx={{ width: '875px' }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: '12px',
+                }}
+              >
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    views={['day', 'month', 'year']}
+                    label="Başlama tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{ width: 432 }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    views={['day', 'month', 'year']}
+                    label="Bitmə tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{ width: 432 }}
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </Box>
 
               <FormControl>
                 <InputLabel htmlFor="component-outlined">Növü</InputLabel>
-                <Select sx={{ width: '875px' }} label="Actions">
-                  <MenuItem value={'Tam gün'}>Tam gün</MenuItem>
-                  <MenuItem value={'Yarım gün'}>Yarım gün</MenuItem>
-                  <MenuItem value={'Test2'}>Test2</MenuItem>
-                  <MenuItem value={'Test3'}>Test3</MenuItem>
-                </Select>
+                <OutlinedInput></OutlinedInput>
               </FormControl>
               <FormControl>
                 <InputLabel htmlFor="component-outlined">Nəticə</InputLabel>
@@ -220,3 +243,4 @@ export const NewDayOff = () => {
     </>
   );
 };
+
