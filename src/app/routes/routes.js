@@ -15,7 +15,8 @@ import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
 // const NotFound = lazy(() => import('./pages/not-found'));
 import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
-import { NewBusinessTrip } from '../views/requests/business-trip/shared/NewBusinessTrip';
+
+import { EditHrBusinessTrip } from '../views/requests/business-trip/shared/EditHrBusinessTrip';
 
 export const AllPages = () => {
   const all_routes = [
@@ -40,7 +41,7 @@ export const AllPages = () => {
       element: (
         <NavContextProvider>
           <AppLayout>
-            <NewBusinessTrip />
+            <EditHrBusinessTrip />
           </AppLayout>
         </NavContextProvider>
       ),
