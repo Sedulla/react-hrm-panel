@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { Navigate, Route, Routes, useRoutes } from 'react-router-dom';
 import { AllPages } from './routes/routes';
-import { AuthProvider } from './contexts/JWTAuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 const App = () => {
   const all_pages = useRoutes(AllPages());

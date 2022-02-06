@@ -75,7 +75,7 @@ const LoginButton = styled(Button)(({ theme }) => ({
 }));
 
 const schema = yup.object().shape({
-  userName: yup.string().required('User name is required'),
+  username: yup.string().required('User name is required'),
   password: yup
     .string()
     .min(7, 'Password is too short - should be 8 chars minimum.')
@@ -94,8 +94,8 @@ export const LoginPage = () => {
 
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    userName: 'admin',
-    password: 'admin',
+    username: 'super',
+    password: 'Pass2021',
   });
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ export const LoginPage = () => {
   const handleFormSubmit = async (event) => {
     setLoading(true);
     try {
-      await login(userInfo.userName, userInfo.password);
+      await login(userInfo.username, userInfo.password);
       navigate('/');
     } catch (e) {
       console.log(e);
@@ -126,7 +126,11 @@ export const LoginPage = () => {
                   id="user-name"
                   sx={{ width: '322px', height: '52px', mb: '1rem' }}
                   type="text"
-                  {...register('userName')}
+                  {...register('username')}
+                  value={userInfo.username}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, username: e.target.value })
+                  }
                 />
               </FormControl>
 
@@ -137,6 +141,10 @@ export const LoginPage = () => {
                   id="password"
                   autoComplete="password"
                   type={userInfo.password.show ? 'text' : 'password'}
+                  value={userInfo.password}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, password: e.target.value })
+                  }
                   {...register('password')}
                   endAdornment={
                     <InputAdornment position="end">
