@@ -1,75 +1,26 @@
 import { useState } from 'react';
 import {
-  AppBar,
   Box,
-  styled,
   Toolbar,
   Typography,
   Breadcrumbs,
   Link as MuiLink,
   Table,
   TableBody,
-  TableCell,
-  TableRow,
 } from '@mui/material';
 import { Info as InfoIcon, KeyboardArrowDown } from '@mui/icons-material';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
-
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const PageHeader = styled(AppBar)(({ theme }) => ({
-  position: 'relative',
-  height: 49,
-  backgroundColor: '#F5F5F5',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexDirection: 'row',
-}));
-
-const Container = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  gap: '16px',
-}));
-
-const InfoContainer = styled(Box)(({ theme }) => ({
-  width: 907,
-  height: 52,
-  backgroundColor: '#FAFAFA',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  marginTop: '16px',
-  padding: '8px',
-  borderRadius: '4px',
-}));
-
-const FormContainer = styled(Box)(({ theme }) => ({
-  width: 907,
-  border: '1px solid #e0e0e0',
-  borderRadius: '4px',
-}));
-
-const FormHeader = styled(Box)(({ theme }) => ({
-  height: 60,
-  backgroundColor: '#f5f5f5',
-  borderBottom: '1px solid #e0e0e0',
-  display: 'flex',
-  alignItems: 'center',
-  padding: '12px 16px',
-}));
-
-const FormTableCell = styled(TableCell)(({ theme }) => ({
-  paddingLeft: '0px',
-}));
-
-const FormTableRow = styled(TableRow)(({ theme }) => ({
-  verticalAlign: 'top',
-}));
+import {
+  PageContent,
+  PageHeader,
+  Container,
+  FormContainer,
+  FormHeader,
+  InfoContainer,
+  FormTableRow,
+  FormTableCell,
+} from '../../../../styles/BusinessTrip.styled';
 
 export const ViewBusinessTrip = () => {
   const [values, setValues] = useState({

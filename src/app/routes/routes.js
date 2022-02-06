@@ -17,6 +17,7 @@ import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
 
 import { EditHrBusinessTrip } from '../views/requests/business-trip/shared/EditHrBusinessTrip';
+import { NewBusinessTrip } from '../views/requests/business-trip/shared/NewBusinessTrip';
 
 export const AllPages = () => {
   const all_routes = [
@@ -41,7 +42,7 @@ export const AllPages = () => {
       element: (
         <NavContextProvider>
           <AppLayout>
-            <EditHrBusinessTrip />
+            <NewBusinessTrip />
           </AppLayout>
         </NavContextProvider>
       ),

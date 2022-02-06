@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import {
-  AppBar,
-  Box,
-  Button,
   FormControl,
   InputLabel,
-  styled,
   Toolbar,
   Typography,
   Select,
@@ -20,79 +16,17 @@ import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
-import { StartEndDateBox } from '../../../../styles/BusinessTrip.styled';
-
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const PageHeader = styled(AppBar)(({ theme }) => ({
-  position: 'relative',
-  height: 49,
-  backgroundColor: '#F5F5F5',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexDirection: 'row',
-  border: '1px solid #e0e0e0',
-}));
-
-const Container = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  marginTop: '16px',
-}));
-
-const FormContainer = styled(Box)(({ theme }) => ({
-  width: 907,
-  border: '1px solid #e0e0e0',
-  borderRadius: '4px',
-}));
-
-const FormHeader = styled(Box)(({ theme }) => ({
-  height: '60px',
-  backgroundColor: '#f5f5f5',
-  borderBottom: '1px solid #e0e0e0',
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: '1.125rem',
-  fontWeight: 'bold',
-  padding: '0px 20px',
-}));
-
-const FormInputsGroup = styled(Box)(({ theme }) => ({
-  padding: '16px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '11px',
-}));
-
-const FormFooter = styled(Box)(({ theme }) => ({
-  width: 907,
-  height: 36,
-  position: 'relative',
-}));
-
-const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  right: 0,
-  width: 188,
-  height: 36,
-  backgroundColor: '#4CAF50',
-  border: '1px solid #4CAF50',
-  borderRadius: '4px',
-  marginTop: '16px',
-  padding: '0px 16px',
-  color: '#fff',
-  fontWeight: 500,
-  '&:hover': {
-    backgroundColor: '#4CAF50',
-  },
-}));
-
-
+import {
+  PageContent,
+  PageHeader,
+  Container,
+  FormContainer,
+  FormHeader,
+  FormInputsGroup,
+  FormFooter,
+  SaveAndRedirectButton,
+  StartEndDateBox,
+} from '../../../../styles/BusinessTrip.styled';
 
 export const NewBusinessTrip = () => {
   const [value, setValue] = useState(new Date());
@@ -143,26 +77,23 @@ export const NewBusinessTrip = () => {
         </PagesNav>
 
         <PageHeader>
-          <Toolbar
-            sx={{
-              position: 'relative',
-              '&:after': {
-                content: '""',
-                display: 'block',
-                alignItems: 'center',
-                position: 'absolute',
-                top: '0',
-                left: '-23px',
-                height: '2px',
-                width: 185,
-                backgroundColor: '#9B5AE1',
-                mt: '53px',
-              },
-            }}
-          >
+          <Toolbar>
             <Typography
               sx={{
                 color: '#9B5AE1',
+                position: 'relative',
+                '&:after': {
+                  content: '""',
+                  display: 'block',
+                  alignItems: 'center',
+                  position: 'absolute',
+                  top: '0',
+                  left: '-30px',
+                  height: '2px',
+                  width: 221,
+                  backgroundColor: '#9B5AE1',
+                  mt: '30px',
+                },
               }}
             >
               Sorğunun formalaşdırılması
