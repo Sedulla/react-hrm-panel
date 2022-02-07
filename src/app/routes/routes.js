@@ -16,6 +16,7 @@ import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
 import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
 
+import { EditPurchasePurchase } from '../views/requests/purchase/shared/EditPurchasePurchase';
 import { EditITItSupply } from '../views/requests/it-supply/shared/EditITItSupply';
 
 export const AllPages = () => {

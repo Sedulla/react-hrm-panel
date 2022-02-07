@@ -32,7 +32,6 @@ import {
   FormFooter,
   SaveButton,
   FormHeaderText,
-  StartEndDateBox,
   FormTableCell,
   FormTableRow,
   RequestDetailsDialog,
@@ -43,7 +42,7 @@ import {
   ActionButtonsContainer,
 } from '../../../../styles/Requests.styled';
 
-export const EditITItSupply = () => {
+export const EditPurchasePurchase = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -158,7 +157,7 @@ export const EditITItSupply = () => {
                 },
               }}
             >
-              IT göndərməsi
+              Satınalma göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
@@ -186,7 +185,7 @@ export const EditITItSupply = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>HR göndərməsi </FormHeaderText>
+              <FormHeaderText>Satınalma göndərməsi </FormHeaderText>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={handleClickOpen}>

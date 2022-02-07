@@ -4,10 +4,10 @@ import { NewItSupply } from './shared/NewItSupply';
 import { ViewItSupply } from './shared/ViewItSupply';
 import { ViewDepartmentHeadItSupply } from './shared/ViewDepartmentHeadItSupply';
 import { EditDepartmentHeadItSupply } from './shared/EditDepartmentHeadItSupply';
-import { ViewHrItSupply } from './shared/ViewHrItSupply';
-import { EditHrItSupply } from './shared/EditHrItSupply';
+import { ViewITItSupply } from './shared/ViewITItSupply';
+import { EditITItSupply } from './shared/EditITItSupply';
 
-export const ItSupplyRequestRoutes = [
+export const itSupplyRequestRoutes = [
   {
     path: '/requests/business-trip/new',
     element: <NewItSupply />,
@@ -26,10 +26,10 @@ export const ItSupplyRequestRoutes = [
   },
   {
     path: '/requests/business-trip/view/hr',
-    element: <ViewHrItSupply />,
+    element: <ViewITItSupply />,
   },
   {
     path: '/requests/business-trip/edit/hr',
-    element: <EditHrItSupply />,
+    element: <EditITItSupply />,
   },
 ];

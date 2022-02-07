@@ -5,22 +5,18 @@ import {
   Typography,
   Breadcrumbs,
   Link as MuiLink,
-  IconButton,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  OutlinedInput,
   Table,
   TableBody,
+  IconButton,
 } from '@mui/material';
 import {
-  InfoOutlined as InfoOutlinedIcon,
   Info as InfoIcon,
+  Edit as EditIcon,
+  InfoOutlined as InfoOutlinedIcon,
   KeyboardArrowDown,
 } from '@mui/icons-material';
-import { useNav } from '../../../../contexts/NavContextProvider';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
+import { useNav } from '../../../../contexts/NavContextProvider';
 import {
   PageContent,
   PageHeader,
@@ -28,33 +24,19 @@ import {
   InfoContainer,
   FormContainer,
   FormHeader,
-  FormInputsGroup,
-  FormFooter,
-  SaveButton,
-  FormHeaderText,
-  StartEndDateBox,
-  FormTableCell,
-  FormTableRow,
-  RequestDetailsDialog,
-  RequestDetailsDialogTitle,
-  RequestDetailsDialogContent,
-  RequestDetailsDialogActions,
-  DialogCloseButton,
   ActionButtonsContainer,
+  FormTableRow,
+  FormTableCell,
+  FormHeaderText,
 } from '../../../../styles/Requests.styled';
 
-export const EditITItSupply = () => {
+export const ViewPurchasePurchase = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
-  const [value, setValue] = useState(new Date());
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(!open);
-  };
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleInputChange = (field) => (event) => {
     setValues({
@@ -76,6 +58,7 @@ export const EditITItSupply = () => {
           position="fixed"
           sx={{
             backgroundColor: '#fff',
+
             color: '#424242',
             mt: '63px',
             borderTop: '2px solid #e0e0e0',
@@ -101,20 +84,18 @@ export const EditITItSupply = () => {
                   Sorğular
                 </MuiLink>
                 <Typography
-                  color="textPrimary"
                   sx={{
                     fontWeight: 'bold',
                   }}
                 >
-                  Ezamiyyət
+                  Satınalma
                 </Typography>
                 <Typography
-                  color="textPrimary"
                   sx={{
                     fontWeight: 'bold',
                   }}
                 >
-                  Sorğunun redaktəsi
+                  Sorğunun təsviri
                 </Typography>
               </Breadcrumbs>
             </div>
@@ -152,13 +133,13 @@ export const EditITItSupply = () => {
                   top: '0',
                   left: '-13px',
                   height: '2px',
-                  width: 129,
+                  width: 151,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              IT göndərməsi
+              Satınalma göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
@@ -186,132 +167,80 @@ export const EditITItSupply = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>HR göndərməsi </FormHeaderText>
+              <FormHeaderText>Satınalma göndərməsi</FormHeaderText>
 
               <ActionButtonsContainer>
-                <IconButton aria-label="" onClick={handleClickOpen}>
+                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton aria-label="">
                   <InfoOutlinedIcon />
                 </IconButton>
               </ActionButtonsContainer>
             </FormHeader>
 
-            <FormInputsGroup>
-              <FormControl
-                sx={{
-                  width: 875,
-                  border: '1px dashed rgba(0, 0, 0, 0.38);',
-                }}
-              >
-                <InputLabel id="note">Qeyd</InputLabel>
-                <OutlinedInput
-                  id="note"
-                  name="note"
-                  value="Sadə qeyd"
-                  disabled
-                ></OutlinedInput>
-              </FormControl>
-              <FormControl
-                sx={{
-                  width: 875,
-                }}
-              >
-                <InputLabel id="note">Nəticə mətni</InputLabel>
-
-                <OutlinedInput
-                  id="result-text"
-                  name="result-text"
-                  value="Mətn"
-                ></OutlinedInput>
-              </FormControl>
-
-              <FormControl
-                sx={{
-                  width: '875px',
-                }}
-              >
-                <InputLabel htmlFor="select">Nəticə</InputLabel>
-                <Select id="select">
-                  <MenuItem value={'Departament rəhbərin göndərməsi'}>
-                    Təsdiqləndi
-                  </MenuItem>
-                  <MenuItem value={'Ləğv olundu'}>Ləğv olundu</MenuItem>
-                  <MenuItem value={'Gözlənilir'}>Test3</MenuItem>
-                </Select>
-              </FormControl>
-            </FormInputsGroup>
-          </FormContainer>
-          <FormFooter>
-            <SaveButton>Yadda saxla və Bitir</SaveButton>
-          </FormFooter>
-        </Container>
-
-        <RequestDetailsDialog
-          open={open}
-          onClose={handleClickOpen}
-          aria-labelledby="dialog-title"
-          aria-describedby="dialog-description"
-        >
-          <RequestDetailsDialogTitle id="dialog-title">
-            Sorğunun detalları
-          </RequestDetailsDialogTitle>
-          <RequestDetailsDialogContent dividers={'paper'}>
-            <Table>
+            <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
               <TableBody>
                 <FormTableRow>
                   <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
                     component="th"
+                    scope="row"
+                    sx={{
+                      width: '244px',
+                      color: '#9E9E9E',
+                    }}
                   >
-                    A.S.A
+                    <Typography>Qeyd</Typography>
                   </FormTableCell>
-                  <FormTableCell sx={{ width: 270 }}>
-                    Hüseyn Lətifov İ.
+                  <FormTableCell
+                    component="td"
+                    scope="row"
+                    sx={{ width: '537px', color: '#212121' }}
+                  >
+                    <Typography> &#8722;</Typography>
                   </FormTableCell>
                 </FormTableRow>
+
                 <FormTableRow>
                   <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
                     component="th"
+                    scope="row"
+                    sx={{
+                      width: '244px',
+                      color: '#9E9E9E',
+                    }}
                   >
-                    Korporativ nömrə
+                    <Typography>Nəticə mətni</Typography>
                   </FormTableCell>
-                  <FormTableCell>+994 55 434 43 43</FormTableCell>
+                  <FormTableCell
+                    component="td"
+                    scope="row"
+                    sx={{ width: '537px', color: '#212121' }}
+                  >
+                    <Typography> &#8722;</Typography>
+                  </FormTableCell>
                 </FormTableRow>
+
                 <FormTableRow>
                   <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
                     component="th"
+                    scope="row"
+                    sx={{ borderBottom: 'none', color: '#9E9E9E' }}
                   >
-                    Vəzifə
+                    <Typography>Nəticə</Typography>
                   </FormTableCell>
-                  <FormTableCell>Sürücü</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell sx={{ fontWeight: 'bold' }} component="th">
-                    Şöbə
-                  </FormTableCell>
-                  <FormTableCell>Əsas</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
                   <FormTableCell
-                    sx={{ fontWeight: 'bold', borderBottom: 'none' }}
-                    component="th"
+                    component="td"
+                    scope="row"
+                    sx={{ borderBottom: 'none', color: '#212121' }}
                   >
-                    Tarix
-                  </FormTableCell>
-                  <FormTableCell sx={{ borderBottom: 'none' }}>
-                    25/05/2021
+                    <Typography>Satınalma göndərməsi</Typography>
                   </FormTableCell>
                 </FormTableRow>
               </TableBody>
             </Table>
-          </RequestDetailsDialogContent>
-          <RequestDetailsDialogActions>
-            <DialogCloseButton onClick={handleClickOpen}>
-              Bağla
-            </DialogCloseButton>
-          </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
+          </FormContainer>
+        </Container>
       </PageContent>
     </>
   );

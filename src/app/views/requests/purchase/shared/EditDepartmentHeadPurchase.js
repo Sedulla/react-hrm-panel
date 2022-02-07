@@ -11,8 +11,8 @@ import {
   Select,
   MenuItem,
   OutlinedInput,
-  Table,
   TableBody,
+  Table,
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
@@ -31,8 +31,6 @@ import {
   FormInputsGroup,
   FormFooter,
   SaveButton,
-  FormHeaderText,
-  StartEndDateBox,
   FormTableCell,
   FormTableRow,
   RequestDetailsDialog,
@@ -40,10 +38,11 @@ import {
   RequestDetailsDialogContent,
   RequestDetailsDialogActions,
   DialogCloseButton,
+  FormHeaderText,
   ActionButtonsContainer,
 } from '../../../../styles/Requests.styled';
 
-export const EditITItSupply = () => {
+export const EditDepartmentHeadPurchase = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -54,13 +53,6 @@ export const EditITItSupply = () => {
 
   const handleClickOpen = () => {
     setOpen(!open);
-  };
-
-  const handleInputChange = (field) => (event) => {
-    setValues({
-      ...values,
-      [field]: event.target.value,
-    });
   };
 
   function handleClick(event) {
@@ -101,16 +93,16 @@ export const EditITItSupply = () => {
                   Sorğular
                 </MuiLink>
                 <Typography
-                  color="textPrimary"
                   sx={{
+                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
-                  Ezamiyyət
+                  Satınalma
                 </Typography>
                 <Typography
-                  color="textPrimary"
                   sx={{
+                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
@@ -133,14 +125,6 @@ export const EditITItSupply = () => {
             </Typography>
             <Typography
               sx={{
-                color: '#000',
-                ml: '16px',
-              }}
-            >
-              Departament rəhbərin göndərməsi
-            </Typography>
-            <Typography
-              sx={{
                 color: '#9B5AE1',
                 ml: '16px',
                 position: 'relative',
@@ -150,32 +134,33 @@ export const EditITItSupply = () => {
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-13px',
+                  left: '-7px',
                   height: '2px',
-                  width: 129,
+                  width: 221,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              IT göndərməsi
+              Departament rəhbərin göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
 
         <Container>
           <InfoContainer>
-            <InfoIcon sx={{ m: '16px 10px 18px' }} />
+            <InfoIcon />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1.05rem',
+                fontSize: '1rem',
+                ml: '8px',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: '700',
+                  fontWeight: 'bold',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -186,7 +171,7 @@ export const EditITItSupply = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>HR göndərməsi </FormHeaderText>
+              <FormHeaderText>Departament rəhbərin göndərməsi</FormHeaderText>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={handleClickOpen}>
@@ -213,6 +198,7 @@ export const EditITItSupply = () => {
               <FormControl
                 sx={{
                   width: 875,
+                  border: '1px dashed rgba(0, 0, 0, 0.38);',
                 }}
               >
                 <InputLabel id="note">Nəticə mətni</InputLabel>
@@ -221,27 +207,28 @@ export const EditITItSupply = () => {
                   id="result-text"
                   name="result-text"
                   value="Mətn"
+                  disabled
                 ></OutlinedInput>
               </FormControl>
 
               <FormControl
                 sx={{
-                  width: '875px',
+                  width: 875,
                 }}
               >
                 <InputLabel htmlFor="select">Nəticə</InputLabel>
                 <Select id="select">
                   <MenuItem value={'Departament rəhbərin göndərməsi'}>
-                    Təsdiqləndi
+                    Satınalma göndərməsi
                   </MenuItem>
-                  <MenuItem value={'Ləğv olundu'}>Ləğv olundu</MenuItem>
-                  <MenuItem value={'Gözlənilir'}>Test3</MenuItem>
+                  <MenuItem value={'HR göndərməsi'}>HR göndərməsi</MenuItem>
+                  <MenuItem value={'Test3'}>Test3</MenuItem>
                 </Select>
               </FormControl>
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveButton>Yadda saxla və Bitir</SaveButton>
+            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
           </FormFooter>
         </Container>
 
