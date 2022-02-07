@@ -16,9 +16,6 @@ import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
 import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
 
-import { EditPurchasePurchase } from '../views/requests/purchase/shared/EditPurchasePurchase';
-import { EditITItSupply } from '../views/requests/it-supply/shared/EditITItSupply';
-
 export const AllPages = () => {
   const all_routes = [
     {
@@ -30,108 +27,22 @@ export const AllPages = () => {
           </NavContextProvider>
         </AuthGuard>
       ),
-      children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
+      children: [
+        ...announcementsRoutes,
+        ...settingsRoutes,
+        ...requestsRoutes,
+        {
+          path: '/homepage',
+          element: <HomePage />,
+        },
+      ],
     },
     ...sessionRoutes,
     {
       path: '*',
       element: <NotFoundPage />,
     },
-    {
-      path: '/homepage',
-      element: (
-        <NavContextProvider>
-          <AppLayout>
-            <EditITItSupply />
-          </AppLayout>
-        </NavContextProvider>
-      ),
-    },
   ];
 
   return all_routes;
 };
-
-// const routes = (isAuthenticated) => [
-//   {
-//     path: '',
-//     element: isAuthenticated ? (
-//       <Layout />
-//     ) : (
-//       <NavContextProvider>
-//         <Layout>
-//           <AnnouncementPage to="/announcements" />
-//         </Layout>
-//       </NavContextProvider>
-//     ),
-//     children: [
-//       { path: '/homepage', element: <HomePage /> },
-//       { path: '/announcementsw', element: <AnnouncementPage /> },
-
-//       {
-//         path: '/announcementse',
-//         element: (
-//           <NavContextProvider>
-//             <Layout>
-//               <Route path="/announcementse" element={<AnnouncementPage />}>
-//                 <Route
-//                   path="/announcements/:id"
-//                   element={<ViewAnnouncement />}
-//                 />
-//               </Route>
-
-//               <Route path="/announcementsa" element={<AnnouncementPage />}>
-//                 <Route
-//                   path="/announcements/add"
-//                   element={<AddNewAnnouncement />}
-//                 />
-//               </Route>
-//             </Layout>
-//           </NavContextProvider>
-//         ),
-//       },
-
-//       {
-//         path: '/settings',
-//         element: (
-//           <NavContextProvider>
-//             <Layout>
-//               <Route path="/settings" element={<ProfileSettingsPage />}>
-//                 <Route path="settings/:id" element={<ProfileSettingsPage />} />
-//               </Route>
-//             </Layout>
-//           </NavContextProvider>
-//         ),
-//       },
-
-//       { path: '/', element: <Navigate to="/app/dashboard" /> },
-//       // {
-//       //   path: '*',
-//       //   element: <p>There's nothing here!</p>,
-//       // },
-//       //   {
-//       //     path: 'member',
-//       //     element: <Outlet />,
-//       //     children: [
-//       //       { path: '/', element: <MemberGrid /> },
-//       //       { path: '/add', element: <AddMember /> },
-//       //     ],
-//       //   },
-//     ],
-//   },
-
-//   // {
-//   //   path: '/',
-//   //   element: !isAuthenticated ? (
-//   //     <Navigation />
-//   //   ) : (
-//   //     <Navigate to="/app/dashboard" />
-//   //   ),
-//   //   children: [
-//   //     { path: 'login', element: <LoginPage /> },
-//   //     { path: '/', element: <Navigate to="/login" /> },
-//   //   ],
-//   // },
-// ];
-
-// export default routes;
