@@ -97,6 +97,7 @@ export const LoginPage = () => {
     username: 'super',
     password: 'Pass2021',
   });
+  
   const { login } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();

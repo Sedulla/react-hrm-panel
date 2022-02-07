@@ -22,6 +22,7 @@ import {
   KeyboardArrowDown,
   AttachFile as AttachFileIcon,
   Clear as ClearIcon,
+  Download as DownloadIcon,
 } from '@mui/icons-material';
 import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -46,9 +47,10 @@ import {
   RequestDetailsDialogContent,
   RequestDetailsDialogActions,
   DialogCloseButton,
+  ActionButtonsContainer,
 } from '../../../../styles/BusinessTrip.styled';
 
-export const EditHrBusinessTrip = () => {
+export const EditHrLeave = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -105,9 +107,20 @@ export const EditHrBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Day off</Typography>
-                <Typography color="text.primary">
-                  {' '}
+                <Typography
+                  color="textPrimary"
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Ezamiyyət
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
                   Sorğunun redaktəsi
                 </Typography>
               </Breadcrumbs>
@@ -119,6 +132,7 @@ export const EditHrBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                ml: '-10px',
                 color: '#000',
               }}
             >
@@ -158,18 +172,17 @@ export const EditHrBusinessTrip = () => {
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -182,14 +195,14 @@ export const EditHrBusinessTrip = () => {
             <FormHeader>
               <FormHeaderText>HR göndərməsi </FormHeaderText>
 
-              <IconButton aria-label="" onClick={handleClickOpen}>
-                <InfoOutlinedIcon
-                  sx={{
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                  }}
-                />
-              </IconButton>
+              <ActionButtonsContainer>
+                <IconButton aria-label="" onClick={handleClickOpen}>
+                  <InfoOutlinedIcon />
+                </IconButton>
+                <IconButton>
+                  <DownloadIcon />
+                </IconButton>
+              </ActionButtonsContainer>
             </FormHeader>
 
             <FormInputsGroup>
@@ -269,21 +282,6 @@ export const EditHrBusinessTrip = () => {
 
               <FormControl
                 sx={{
-                  width: 875,
-                  border: '1px dashed rgba(0, 0, 0, 0.38);',
-                }}
-              >
-                <InputLabel htmlFor="component">Qeyd</InputLabel>
-                <OutlinedInput
-                  id="component"
-                  type="text"
-                  value="Sadə qeyd"
-                  disabled
-                  aria-disabled="true"
-                />
-              </FormControl>
-              <FormControl
-                sx={{
                   width: '875px',
                 }}
               >
@@ -349,12 +347,6 @@ export const EditHrBusinessTrip = () => {
                     Şöbə
                   </FormTableCell>
                   <FormTableCell>Əsas</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell sx={{ fontWeight: 'bold' }} component="th">
-                    Sorğunun sənədi
-                  </FormTableCell>
-                  <FormTableCell>Sorğunun sənədi.pdf</FormTableCell>
                 </FormTableRow>
                 <FormTableRow>
                   <FormTableCell

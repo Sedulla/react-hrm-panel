@@ -2,7 +2,7 @@ import axios from 'axios';
 import { TokenService } from './token.service';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://188.166.133.164/api',
+  baseURL: 'http://80.69.59.77:888/api',
   headers: {
     'Content-Type': 'application/json',
   },

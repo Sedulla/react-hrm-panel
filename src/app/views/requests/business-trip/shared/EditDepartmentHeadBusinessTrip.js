@@ -35,7 +35,7 @@ import {
   FormHeader,
   FormInputsGroup,
   FormFooter,
-  SaveAndRedirectButton,
+  SaveButton,
   StartEndDateBox,
   FormTableCell,
   FormTableRow,
@@ -197,6 +197,7 @@ export const EditDepartmentHeadBusinessTrip = () => {
                         }}
                       />
                     )}
+                    InputAdornmentProps={{ position: 'start' }}
                   />
                 </LocalizationProvider>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -219,6 +220,7 @@ export const EditDepartmentHeadBusinessTrip = () => {
                         }}
                       />
                     )}
+                    InputAdornmentProps={{ position: 'start' }}
                   />
                 </LocalizationProvider>
               </StartEndDateBox>
@@ -274,9 +276,7 @@ export const EditDepartmentHeadBusinessTrip = () => {
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveAndRedirectButton>
-              Yadda saxla və Yönləndir
-            </SaveAndRedirectButton>
+            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
           </FormFooter>
         </Container>
 

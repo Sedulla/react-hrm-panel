@@ -17,13 +17,13 @@ import {
   Container,
   FormContainer,
   FormHeader,
-  FormHeaderText,
   InfoContainer,
   FormTableRow,
   FormTableCell,
+  FormHeaderText,
 } from '../../../../styles/BusinessTrip.styled';
 
-export const ViewBusinessTrip = () => {
+export const ViewLeave = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -74,8 +74,22 @@ export const ViewBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Ezamiyyət</Typography>
-                <Typography color="text.primary"> Sorğunun təsviri</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {' '}
+                  Məzuniyyət
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {' '}
+                  Sorğunun təsviri
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -85,8 +99,10 @@ export const ViewBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                fontSize: '1rem',
                 color: '#9B5AE1',
                 position: 'relative',
+                ml: '-10px',
                 '&:after': {
                   content: '""',
                   display: 'block',
@@ -95,7 +111,7 @@ export const ViewBusinessTrip = () => {
                   top: '0',
                   left: '-25px',
                   height: '2px',
-                  width: 129,
+                  width: 207,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
@@ -108,18 +124,17 @@ export const ViewBusinessTrip = () => {
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -172,22 +187,6 @@ export const ViewBusinessTrip = () => {
                     sx={{ width: '537px', color: '#212121' }}
                   >
                     <Typography> 21/06/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Qeyd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>Sadə qeyd</Typography>
                   </FormTableCell>
                 </FormTableRow>
 

@@ -23,6 +23,10 @@ const setUser = (user) => {
   localStorage.setItem('user', JSON.stringify(user));
 };
 
+const setAccessToken = (access_token) => {
+  localStorage.setItem('access_token', JSON.stringify(access_token));
+};
+
 const removeUser = () => {
   localStorage.removeItem('user');
 };
@@ -34,4 +38,5 @@ export const TokenService = {
   getUser,
   setUser,
   removeUser,
+  setAccessToken,
 };

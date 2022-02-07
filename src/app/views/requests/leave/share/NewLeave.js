@@ -26,9 +26,10 @@ import {
   FormFooter,
   SaveButton,
   StartEndDateBox,
+  FormHeaderText,
 } from '../../../../styles/BusinessTrip.styled';
 
-export const NewBusinessTrip = () => {
+export const NewLeave = () => {
   const [value, setValue] = useState(new Date());
   const { navOpen } = useNav();
 
@@ -69,8 +70,21 @@ export const NewBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Ezamiyyət</Typography>
-                <Typography color="text.primary"> Yeni sorğu</Typography>
+                <Typography
+                  
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Məzuniyyət
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Yeni sorğu
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -82,6 +96,7 @@ export const NewBusinessTrip = () => {
               sx={{
                 color: '#9B5AE1',
                 position: 'relative',
+                ml: '-10px',
                 '&:after': {
                   content: '""',
                   display: 'block',
@@ -103,7 +118,9 @@ export const NewBusinessTrip = () => {
 
         <Container>
           <FormContainer>
-            <FormHeader>Sorğunun formalaşdırılması</FormHeader>
+            <FormHeader>
+              <FormHeaderText> Sorğunun formalaşdırılması</FormHeaderText>
+            </FormHeader>
             <FormInputsGroup>
               <StartEndDateBox>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -147,17 +164,6 @@ export const NewBusinessTrip = () => {
               </StartEndDateBox>
 
               <FormControl>
-                <InputLabel htmlFor="component-outlined">Növü</InputLabel>
-                <OutlinedInput
-                  sx={{
-                    width: 875,
-                  }}
-                  id="component-outlined"
-                  label="Növü"
-                  type="text"
-                />
-              </FormControl>
-              <FormControl>
                 <InputLabel htmlFor="component-outlined">Nəticə</InputLabel>
                 <Select sx={{ width: '875px' }} label="Actions">
                   <MenuItem value={'Departament rəhbərin göndərməsi'}>
@@ -170,9 +176,7 @@ export const NewBusinessTrip = () => {
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveButton>
-              Yadda saxla və Yönləndir
-            </SaveButton>
+            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
           </FormFooter>
         </Container>
       </PageContent>

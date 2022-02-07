@@ -249,6 +249,7 @@ export const DayOffHrEdit = () => {
             <FormInputsGroup>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
+                  disabled
                   views={['day', 'month', 'year']}
                   label="Day off tarixi"
                   inputFormat="MM/dd/yyyy"
@@ -266,7 +267,8 @@ export const DayOffHrEdit = () => {
                       }}
                     />
                   )}
-                  disabled
+                  InputAdornmentProps={{ position: 'start' }}
+
                 />
               </LocalizationProvider>
 

@@ -186,6 +186,8 @@ export const NewDayOff = () => {
                       sx={{ width: '875px' }}
                     />
                   )}
+                  InputAdornmentProps={{ position: 'start' }}
+
                 />
               </LocalizationProvider>
 

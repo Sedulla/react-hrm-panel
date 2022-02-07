@@ -2,7 +2,7 @@ import {
   AppBar,
   Box,
   styled,
-  Button,
+  Button as MuiButton,
   TableCell,
   TableRow,
   Dialog,
@@ -76,6 +76,7 @@ const FormHeader = styled(Box)(({ theme }) => ({
 const FormHeaderText = styled(Typography)(({ theme }) => ({
   fontSize: '1.125rem',
   fontWeight: 500,
+  color: '#424242',
 }));
 
 const FormInputsGroup = styled(Box)(({ theme }) => ({
@@ -119,35 +120,23 @@ const RequestDetailsDialogActions = styled(DialogActions)(({ theme }) => ({}));
 
 // BUTTONS STYLES
 
-const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  right: 0,
-  width: 188,
-  height: 36,
-  backgroundColor: '#4CAF50',
-  border: '1px solid #4CAF50',
-  color: '#fff',
+const Button = styled(MuiButton)(({ theme }) => ({
   borderRadius: '4px',
   padding: '0px 16px',
-  marginTop: '16px',
-  fontWeight: 500,
-  '&:hover': {
-    backgroundColor: '#4CAF50',
-  },
+  height: 36,
 }));
 
-const SaveAndFinishButton = styled(Button)(({ theme }) => ({
-  position: 'absolute',
-  right: 0,
+const SaveButton = styled(Button)(({ theme }) => ({
   width: 188,
-  height: 36,
+  fontWeight: 500,
+  fontSize: '1.05rem',
   backgroundColor: '#4CAF50',
   border: '1px solid #4CAF50',
   color: '#fff',
-  borderRadius: '4px',
-  padding: '0px 16px',
   marginTop: '16px',
-  fontWeight: 500,
+  position: 'absolute',
+  right: 0,
+
   '&:hover': {
     backgroundColor: '#4CAF50',
   },
@@ -155,11 +144,8 @@ const SaveAndFinishButton = styled(Button)(({ theme }) => ({
 
 const DialogCloseButton = styled(Button)(({ theme }) => ({
   width: 68,
-  height: 36,
-  padding: '0px 16px',
   backgroundColor: '#EEEEEE',
   color: '#424242',
-  borderRadius: '4px',
 }));
 
 export {
@@ -174,8 +160,7 @@ export {
   FormTableCell,
   FormTableRow,
   FormFooter,
-  SaveAndRedirectButton,
-  SaveAndFinishButton,
+  SaveButton,
   ActionButtonsContainer,
   RequestDetailsDialog,
   RequestDetailsDialogTitle,

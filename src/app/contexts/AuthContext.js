@@ -18,7 +18,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuthenticated,
-        isInitialised: true,
+        isInitialized: true,
         user,
       };
     }
@@ -55,7 +55,7 @@ const reducer = (state, action) => {
 
 export const AuthContext = createContext({
   ...initialState,
-  login: () => Promise.resolve(),
+  login: () => {},
   logout: () => {},
 });
 
@@ -70,7 +70,9 @@ export const AuthProvider = ({ children }) => {
       })
       .then((response) => {
         if (response.data.access_token) {
-          TokenService.setUser(response.data);
+          TokenService.setAccessToken(response.data);
+          console.log(response);
+          console.log(response.data);
 
           dispatch({
             type: 'LOGIN',

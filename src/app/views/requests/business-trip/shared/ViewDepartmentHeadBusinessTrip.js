@@ -32,6 +32,7 @@ import {
   RequestDetailsDialogActions,
   DialogCloseButton,
   ActionButtonsContainer,
+  FormHeaderText,
 } from '../../../../styles/BusinessTrip.styled';
 
 export const ViewDepartmentHeadBusinessTrip = () => {
@@ -148,9 +149,9 @@ export const ViewDepartmentHeadBusinessTrip = () => {
 
           <FormContainer>
             <FormHeader>
-              <Typography sx={{ fontSize: '1.125rem', fontWeight: 500 }}>
+              <FormHeaderText>
                 Departament rəhbərin göndərməsi
-              </Typography>
+              </FormHeaderText>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>

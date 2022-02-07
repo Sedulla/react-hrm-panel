@@ -13,15 +13,15 @@ import {
   TextField,
   OutlinedInput,
   InputAdornment,
-  Table,
   TableBody,
+  Table,
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
   Info as InfoIcon,
   KeyboardArrowDown,
   AttachFile as AttachFileIcon,
-  Clear as ClearIcon,
+  Download as DownloadIcon,
 } from '@mui/icons-material';
 import { LocalizationProvider, DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -37,7 +37,6 @@ import {
   FormInputsGroup,
   FormFooter,
   SaveButton,
-  FormHeaderText,
   StartEndDateBox,
   FormTableCell,
   FormTableRow,
@@ -46,9 +45,11 @@ import {
   RequestDetailsDialogContent,
   RequestDetailsDialogActions,
   DialogCloseButton,
+  FormHeaderText,
+  ActionButtonsContainer,
 } from '../../../../styles/BusinessTrip.styled';
 
-export const EditHrBusinessTrip = () => {
+export const EditDepartmentHeadLeave = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -59,13 +60,6 @@ export const EditHrBusinessTrip = () => {
 
   const handleClickOpen = () => {
     setOpen(!open);
-  };
-
-  const handleInputChange = (field) => (event) => {
-    setValues({
-      ...values,
-      [field]: event.target.value,
-    });
   };
 
   function handleClick(event) {
@@ -105,9 +99,21 @@ export const EditHrBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Day off</Typography>
-                <Typography color="text.primary">
+                <Typography
+                  sx={{
+                    color: '#424242',
+                    fontWeight: 'bold',
+                  }}
+                >
                   {' '}
+                  Məzuniyyət
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#424242',
+                    fontWeight: 'bold',
+                  }}
+                >
                   Sorğunun redaktəsi
                 </Typography>
               </Breadcrumbs>
@@ -119,18 +125,11 @@ export const EditHrBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                ml: '-10px',
                 color: '#000',
               }}
             >
               Sorğunun formalaşdırılması
-            </Typography>
-            <Typography
-              sx={{
-                color: '#000',
-                ml: '16px',
-              }}
-            >
-              Departament rəhbərin göndərməsi
             </Typography>
             <Typography
               sx={{
@@ -143,15 +142,15 @@ export const EditHrBusinessTrip = () => {
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-13px',
+                  left: '-7px',
                   height: '2px',
-                  width: 129,
+                  width: 221,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              HR göndərməsi
+              Departament rəhbərin göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
@@ -180,16 +179,16 @@ export const EditHrBusinessTrip = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>HR göndərməsi </FormHeaderText>
+              <FormHeaderText>Departament rəhbərin göndərməsi</FormHeaderText>
 
-              <IconButton aria-label="" onClick={handleClickOpen}>
-                <InfoOutlinedIcon
-                  sx={{
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                  }}
-                />
-              </IconButton>
+              <ActionButtonsContainer>
+                <IconButton aria-label="" onClick={handleClickOpen}>
+                  <InfoOutlinedIcon />
+                </IconButton>
+                <IconButton>
+                  <DownloadIcon />
+                </IconButton>
+              </ActionButtonsContainer>
             </FormHeader>
 
             <FormInputsGroup>
@@ -249,6 +248,7 @@ export const EditHrBusinessTrip = () => {
                 }}
               >
                 <OutlinedInput
+                  disabled
                   id="file"
                   name="file"
                   value="Skan edilmiş sənəd"
@@ -257,49 +257,27 @@ export const EditHrBusinessTrip = () => {
                       <AttachFileIcon />
                     </InputAdornment>
                   }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton aria-label="clear file" onClick={() => {}}>
-                        <ClearIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  }
                 ></OutlinedInput>
               </FormControl>
 
               <FormControl
                 sx={{
                   width: 875,
-                  border: '1px dashed rgba(0, 0, 0, 0.38);',
-                }}
-              >
-                <InputLabel htmlFor="component">Qeyd</InputLabel>
-                <OutlinedInput
-                  id="component"
-                  type="text"
-                  value="Sadə qeyd"
-                  disabled
-                  aria-disabled="true"
-                />
-              </FormControl>
-              <FormControl
-                sx={{
-                  width: '875px',
                 }}
               >
                 <InputLabel htmlFor="select">Nəticə</InputLabel>
                 <Select id="select">
                   <MenuItem value={'Departament rəhbərin göndərməsi'}>
-                    Təsdiqləndi
+                    Departament rəhbərin göndərməsi
                   </MenuItem>
-                  <MenuItem value={'Ləğv olundu'}>Ləğv olundu</MenuItem>
-                  <MenuItem value={'Gözlənilir'}>Test3</MenuItem>
+                  <MenuItem value={'HR göndərməsi'}>HR göndərməsi</MenuItem>
+                  <MenuItem value={'Test3'}>Test3</MenuItem>
                 </Select>
               </FormControl>
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveButton>Yadda saxla və Bitir</SaveButton>
+            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
           </FormFooter>
         </Container>
 
@@ -349,12 +327,6 @@ export const EditHrBusinessTrip = () => {
                     Şöbə
                   </FormTableCell>
                   <FormTableCell>Əsas</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell sx={{ fontWeight: 'bold' }} component="th">
-                    Sorğunun sənədi
-                  </FormTableCell>
-                  <FormTableCell>Sorğunun sənədi.pdf</FormTableCell>
                 </FormTableRow>
                 <FormTableRow>
                   <FormTableCell
