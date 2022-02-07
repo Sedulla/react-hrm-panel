@@ -47,7 +47,7 @@ import {
   DialogCloseButton,
   FormHeaderText,
   ActionButtonsContainer,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
 export const EditDepartmentHeadLeave = () => {
   const [values, setValues] = useState({

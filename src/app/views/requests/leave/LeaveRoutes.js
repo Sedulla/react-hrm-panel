@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 
-import { NewLeave } from './share/NewLeave';
-import { ViewLeave } from './share/ViewLeave';
-import { ViewDepartmentHeadLeave } from './share/ViewDepartmentHeadLeave';
-import { EditDepartmentHeadLeave } from './share/EditDepartmentHeadLeave';
-import { ViewHrLeave } from './share/ViewHrLeave';
-import { EditHrLeave } from './share/EditHrLeave';
+import { NewLeave } from './shared/NewLeave';
+import { ViewLeave } from './shared/ViewLeave';
+import { ViewDepartmentHeadLeave } from './shared/ViewDepartmentHeadLeave';
+import { EditDepartmentHeadLeave } from './shared/EditDepartmentHeadLeave';
+import { ViewHrLeave } from './shared/ViewHrLeave';
+import { EditHrLeave } from './shared/EditHrLeave';
 
 export const leaveRequestRoutes = [
   {

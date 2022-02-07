@@ -7,34 +7,46 @@ import {
   Link as MuiLink,
   Table,
   TableBody,
+  IconButton,
 } from '@mui/material';
-import { Info as InfoIcon, KeyboardArrowDown } from '@mui/icons-material';
+import {
+  InfoOutlined as InfoOutlinedIcon,
+  Info as InfoIcon,
+  KeyboardArrowDown,
+  Edit as EditIcon,
+  Download as DownloadIcon,
+} from '@mui/icons-material';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
 import {
   PageContent,
   PageHeader,
   Container,
+  InfoContainer,
   FormContainer,
   FormHeader,
-  InfoContainer,
-  FormTableRow,
   FormTableCell,
+  FormTableRow,
+  RequestDetailsDialog,
+  RequestDetailsDialogTitle,
+  RequestDetailsDialogContent,
+  RequestDetailsDialogActions,
+  DialogCloseButton,
+  ActionButtonsContainer,
   FormHeaderText,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
-export const ViewLeave = () => {
+export const ViewDepartmentHeadItSupply = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
+  const [isEdit, setIsEdit] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleInputChange = (field) => (event) => {
-    setValues({
-      ...values,
-      [field]: event.target.value,
-    });
+  const handleClickOpen = () => {
+    setOpen(!open);
   };
 
   function handleClick(event) {
@@ -76,14 +88,15 @@ export const ViewLeave = () => {
                 </MuiLink>
                 <Typography
                   sx={{
+                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
-                  {' '}
-                  Məzuniyyət
+                  IT təchizat
                 </Typography>
                 <Typography
                   sx={{
+                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
@@ -99,42 +112,50 @@ export const ViewLeave = () => {
           <Toolbar>
             <Typography
               sx={{
-                fontSize: '1rem',
+                ml: '-10px',
+                color: '#000',
+              }}
+            >
+              Sorğunun formalaşdırılması
+            </Typography>
+            <Typography
+              sx={{
                 color: '#9B5AE1',
                 position: 'relative',
-                ml: '-10px',
+                ml: '16px',
                 '&:after': {
                   content: '""',
                   display: 'block',
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-25px',
+                  left: '-7px',
                   height: '2px',
-                  width: 207,
+                  width: 221,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              Sorğunun formalaşdırılması
+              Departament rəhbərin göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
 
         <Container>
           <InfoContainer>
-            <InfoIcon sx={{ m: '16px 10px 18px' }} />
+            <InfoIcon />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1.05rem',
+                fontSize: '1rem',
+                ml: '8px',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: '700',
+                  fontWeight: 'bold',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -145,7 +166,16 @@ export const ViewLeave = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>Sorğunun formalaşdırılması</FormHeaderText>
+              <FormHeaderText>Departament rəhbərin göndərməsi</FormHeaderText>
+
+              <ActionButtonsContainer>
+                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton aria-label="" onClick={handleClickOpen}>
+                  <InfoOutlinedIcon />
+                </IconButton>
+              </ActionButtonsContainer>
             </FormHeader>
 
             <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
@@ -159,14 +189,14 @@ export const ViewLeave = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography>Başlama tarixi</Typography>
+                    <Typography> Qeyd</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
                     scope="row"
                     sx={{ width: '537px', color: '#212121' }}
                   >
-                    <Typography> 25/05/2021</Typography>
+                    <Typography>&#8722; </Typography>
                   </FormTableCell>
                 </FormTableRow>
 
@@ -179,14 +209,14 @@ export const ViewLeave = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography>Bitmə tarixi</Typography>
+                    <Typography> Nəticə mətni</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
                     scope="row"
                     sx={{ width: '537px', color: '#212121' }}
                   >
-                    <Typography> 21/06/2021</Typography>
+                    <Typography>&#8722;</Typography>
                   </FormTableCell>
                 </FormTableRow>
 
@@ -203,13 +233,81 @@ export const ViewLeave = () => {
                     scope="row"
                     sx={{ borderBottom: 'none', color: '#212121' }}
                   >
-                    <Typography>Departament rəhbərin göndərməsi</Typography>
+                    <Typography>HR göndərməsi</Typography>
                   </FormTableCell>
                 </FormTableRow>
               </TableBody>
             </Table>
           </FormContainer>
         </Container>
+
+        <RequestDetailsDialog
+          open={open}
+          onClose={handleClickOpen}
+          aria-labelledby="dialog-title"
+          aria-describedby="dialog-description"
+        >
+          <RequestDetailsDialogTitle id="dialog-title">
+            Sorğunun detalları
+          </RequestDetailsDialogTitle>
+          <RequestDetailsDialogContent dividers={'paper'}>
+            <Table>
+              <TableBody>
+                <FormTableRow>
+                  <FormTableCell
+                    sx={{ width: 270, fontWeight: 'bold' }}
+                    component="th"
+                  >
+                    A.S.A
+                  </FormTableCell>
+                  <FormTableCell sx={{ width: 270 }}>
+                    Hüseyn Lətifov İ.
+                  </FormTableCell>
+                </FormTableRow>
+                <FormTableRow>
+                  <FormTableCell
+                    sx={{ width: 270, fontWeight: 'bold' }}
+                    component="th"
+                  >
+                    Korporativ nömrə
+                  </FormTableCell>
+                  <FormTableCell>+994 55 434 43 43</FormTableCell>
+                </FormTableRow>
+                <FormTableRow>
+                  <FormTableCell
+                    sx={{ width: 270, fontWeight: 'bold' }}
+                    component="th"
+                  >
+                    Vəzifə
+                  </FormTableCell>
+                  <FormTableCell>Sürücü</FormTableCell>
+                </FormTableRow>
+                <FormTableRow>
+                  <FormTableCell sx={{ fontWeight: 'bold' }} component="th">
+                    Şöbə
+                  </FormTableCell>
+                  <FormTableCell>Əsas</FormTableCell>
+                </FormTableRow>
+                <FormTableRow>
+                  <FormTableCell
+                    sx={{ fontWeight: 'bold', borderBottom: 'none' }}
+                    component="th"
+                  >
+                    Tarix
+                  </FormTableCell>
+                  <FormTableCell sx={{ borderBottom: 'none' }}>
+                    25/05/2021
+                  </FormTableCell>
+                </FormTableRow>
+              </TableBody>
+            </Table>
+          </RequestDetailsDialogContent>
+          <RequestDetailsDialogActions>
+            <DialogCloseButton onClick={handleClickOpen}>
+              Bağla
+            </DialogCloseButton>
+          </RequestDetailsDialogActions>
+        </RequestDetailsDialog>
       </PageContent>
     </>
   );

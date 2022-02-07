@@ -30,7 +30,7 @@ import {
   FormHeaderText,
 } from '../../../../styles/Requests.styled';
 
-export const ViewHrBusinessTrip = () => {
+export const ViewITItSupply = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -83,8 +83,22 @@ export const ViewHrBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Day off</Typography>
-                <Typography color="text.primary"> Sorğunun təsviri</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {' '}
+                  Day off
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {' '}
+                  Sorğunun təsviri
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -94,6 +108,7 @@ export const ViewHrBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                ml: '-10px',
                 color: '#000',
               }}
             >
@@ -105,7 +120,7 @@ export const ViewHrBusinessTrip = () => {
                 ml: '16px',
               }}
             >
-              Departament rəhbərin göndərməsi
+              IT təchizat göndərməsi
             </Typography>
             <Typography
               sx={{
@@ -118,33 +133,32 @@ export const ViewHrBusinessTrip = () => {
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-7px',
+                  left: '-13px',
                   height: '2px',
-                  width: 129,
+                  width: 122,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              HR göndərməsi
+              IT göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -155,25 +169,14 @@ export const ViewHrBusinessTrip = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>HR göndərməsi</FormHeaderText>
+              <FormHeaderText>IT göndərməsi</FormHeaderText>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
-                  <EditIcon
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
+                  <EditIcon />
                 </IconButton>
-                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
-                  <InfoOutlinedIcon
-                    sx={{
-                      ml: '12px',
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
+                <IconButton aria-label="">
+                  <InfoOutlinedIcon />
                 </IconButton>
               </ActionButtonsContainer>
             </FormHeader>
@@ -189,14 +192,14 @@ export const ViewHrBusinessTrip = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography>Başlama tarixi</Typography>
+                    <Typography>Qeyd</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
                     scope="row"
                     sx={{ width: '537px', color: '#212121' }}
                   >
-                    <Typography> 25/05/2021</Typography>
+                    <Typography> Sadə bir qeyd</Typography>
                   </FormTableCell>
                 </FormTableRow>
 
@@ -209,48 +212,14 @@ export const ViewHrBusinessTrip = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography>Bitmə tarixi</Typography>
+                    <Typography>Nəticə mətni</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
                     scope="row"
                     sx={{ width: '537px', color: '#212121' }}
                   >
-                    <Typography> 21/06/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Skan edilmiş sənəd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>Skan edilmiş sənəd.pdf</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Qeyd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>Sadə qeyd</Typography>
+                    <Typography> Hər şey qaydasındadır</Typography>
                   </FormTableCell>
                 </FormTableRow>
 
@@ -267,7 +236,7 @@ export const ViewHrBusinessTrip = () => {
                     scope="row"
                     sx={{ borderBottom: 'none', color: '#212121' }}
                   >
-                    <Typography>HR göndərməsi</Typography>
+                    <Typography>IT göndərməsi</Typography>
                   </FormTableCell>
                 </FormTableRow>
               </TableBody>

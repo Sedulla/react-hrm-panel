@@ -46,7 +46,7 @@ import {
   RequestDetailsDialogContent,
   RequestDetailsDialogActions,
   DialogCloseButton,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
 export const EditHrBusinessTrip = () => {
   const [values, setValues] = useState({

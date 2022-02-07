@@ -10,11 +10,11 @@ import {
   IconButton,
 } from '@mui/material';
 import {
-  InfoOutlined as InfoOutlinedIcon,
   Info as InfoIcon,
-  KeyboardArrowDown,
   Edit as EditIcon,
+  InfoOutlined as InfoOutlinedIcon,
   Download as DownloadIcon,
+  KeyboardArrowDown,
 } from '@mui/icons-material';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
@@ -25,28 +25,25 @@ import {
   InfoContainer,
   FormContainer,
   FormHeader,
-  FormTableCell,
-  FormTableRow,
-  RequestDetailsDialog,
-  RequestDetailsDialogTitle,
-  RequestDetailsDialogContent,
-  RequestDetailsDialogActions,
-  DialogCloseButton,
   ActionButtonsContainer,
+  FormTableRow,
+  FormTableCell,
   FormHeaderText,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
-export const ViewDepartmentHeadLeave = () => {
+export const ViewHrLeave = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
   const [isEdit, setIsEdit] = useState(false);
-  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(!open);
+  const handleInputChange = (field) => (event) => {
+    setValues({
+      ...values,
+      [field]: event.target.value,
+    });
   };
 
   function handleClick(event) {
@@ -62,6 +59,7 @@ export const ViewDepartmentHeadLeave = () => {
           position="fixed"
           sx={{
             backgroundColor: '#fff',
+
             color: '#424242',
             mt: '63px',
             borderTop: '2px solid #e0e0e0',
@@ -88,15 +86,14 @@ export const ViewDepartmentHeadLeave = () => {
                 </MuiLink>
                 <Typography
                   sx={{
-                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
-                  Məzuniyyət
+                  {' '}
+                  Day off
                 </Typography>
                 <Typography
                   sx={{
-                    color: '#424242',
                     fontWeight: 'bold',
                   }}
                 >
@@ -120,9 +117,17 @@ export const ViewDepartmentHeadLeave = () => {
             </Typography>
             <Typography
               sx={{
-                color: '#9B5AE1',
-                position: 'relative',
+                color: '#000',
                 ml: '16px',
+              }}
+            >
+              Departament rəhbərin göndərməsi
+            </Typography>
+            <Typography
+              sx={{
+                color: '#9B5AE1',
+                ml: '16px',
+                position: 'relative',
                 '&:after': {
                   content: '""',
                   display: 'block',
@@ -131,31 +136,30 @@ export const ViewDepartmentHeadLeave = () => {
                   top: '0',
                   left: '-7px',
                   height: '2px',
-                  width: 221,
+                  width: 129,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              Departament rəhbərin göndərməsi
+              HR göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -166,13 +170,13 @@ export const ViewDepartmentHeadLeave = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>Departament rəhbərin göndərməsi</FormHeaderText>
+              <FormHeaderText>HR göndərməsi</FormHeaderText>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
                   <EditIcon />
                 </IconButton>
-                <IconButton aria-label="" onClick={handleClickOpen}>
+                <IconButton aria-label="">
                   <InfoOutlinedIcon />
                 </IconButton>
                 <IconButton>
@@ -192,7 +196,7 @@ export const ViewDepartmentHeadLeave = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography> Başlama tarixi</Typography>
+                    <Typography>Başlama tarixi</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
@@ -212,7 +216,7 @@ export const ViewDepartmentHeadLeave = () => {
                       color: '#9E9E9E',
                     }}
                   >
-                    <Typography> Bitmə tarixi</Typography>
+                    <Typography>Bitmə tarixi</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
@@ -236,7 +240,7 @@ export const ViewDepartmentHeadLeave = () => {
                     scope="row"
                     sx={{ color: '#212121' }}
                   >
-                    <Typography>—</Typography>
+                    <Typography>-</Typography>
                   </FormTableCell>
                 </FormTableRow>
 
@@ -246,7 +250,7 @@ export const ViewDepartmentHeadLeave = () => {
                     scope="row"
                     sx={{ borderBottom: 'none', color: '#9E9E9E' }}
                   >
-                    <Typography> Nəticə</Typography>
+                    <Typography>Nəticə</Typography>
                   </FormTableCell>
                   <FormTableCell
                     component="td"
@@ -260,74 +264,6 @@ export const ViewDepartmentHeadLeave = () => {
             </Table>
           </FormContainer>
         </Container>
-
-        <RequestDetailsDialog
-          open={open}
-          onClose={handleClickOpen}
-          aria-labelledby="dialog-title"
-          aria-describedby="dialog-description"
-        >
-          <RequestDetailsDialogTitle id="dialog-title">
-            Sorğunun detalları
-          </RequestDetailsDialogTitle>
-          <RequestDetailsDialogContent dividers={'paper'}>
-            <Table>
-              <TableBody>
-                <FormTableRow>
-                  <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    A.S.A
-                  </FormTableCell>
-                  <FormTableCell sx={{ width: 270 }}>
-                    Hüseyn Lətifov İ.
-                  </FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    Korporativ nömrə
-                  </FormTableCell>
-                  <FormTableCell>+994 55 434 43 43</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    Vəzifə
-                  </FormTableCell>
-                  <FormTableCell>Sürücü</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell sx={{ fontWeight: 'bold' }} component="th">
-                    Şöbə
-                  </FormTableCell>
-                  <FormTableCell>Əsas</FormTableCell>
-                </FormTableRow>
-                <FormTableRow>
-                  <FormTableCell
-                    sx={{ fontWeight: 'bold', borderBottom: 'none' }}
-                    component="th"
-                  >
-                    Tarix
-                  </FormTableCell>
-                  <FormTableCell sx={{ borderBottom: 'none' }}>
-                    25/05/2021
-                  </FormTableCell>
-                </FormTableRow>
-              </TableBody>
-            </Table>
-          </RequestDetailsDialogContent>
-          <RequestDetailsDialogActions>
-            <DialogCloseButton onClick={handleClickOpen}>
-              Bağla
-            </DialogCloseButton>
-          </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
       </PageContent>
     </>
   );

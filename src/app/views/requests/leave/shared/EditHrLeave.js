@@ -5,18 +5,29 @@ import {
   Typography,
   Breadcrumbs,
   Link as MuiLink,
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+  OutlinedInput,
+  InputAdornment,
   Table,
   TableBody,
-  IconButton,
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
   Info as InfoIcon,
   KeyboardArrowDown,
-  Edit as EditIcon,
+  AttachFile as AttachFileIcon,
+  Clear as ClearIcon,
+  Download as DownloadIcon,
 } from '@mui/icons-material';
-import { PagesNav } from '../../../../styles/PagesNav.styled';
+import { LocalizationProvider, DatePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useNav } from '../../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../styles/PagesNav.styled';
 import {
   PageContent,
   PageHeader,
@@ -24,6 +35,11 @@ import {
   InfoContainer,
   FormContainer,
   FormHeader,
+  FormInputsGroup,
+  FormFooter,
+  SaveButton,
+  FormHeaderText,
+  StartEndDateBox,
   FormTableCell,
   FormTableRow,
   RequestDetailsDialog,
@@ -32,20 +48,26 @@ import {
   RequestDetailsDialogActions,
   DialogCloseButton,
   ActionButtonsContainer,
-  FormHeaderText,
 } from '../../../../styles/Requests.styled';
 
-export const ViewDepartmentHeadBusinessTrip = () => {
+export const EditHrLeave = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
-  const [isEdit, setIsEdit] = useState(false);
+  const [value, setValue] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(!open);
+  };
+
+  const handleInputChange = (field) => (event) => {
+    setValues({
+      ...values,
+      [field]: event.target.value,
+    });
   };
 
   function handleClick(event) {
@@ -85,8 +107,22 @@ export const ViewDepartmentHeadBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Ezamiyyət</Typography>
-                <Typography color="text.primary"> Sorğunun təsviri</Typography>
+                <Typography
+                  color="textPrimary"
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Ezamiyyət
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Sorğunun redaktəsi
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -96,6 +132,7 @@ export const ViewDepartmentHeadBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                ml: '-10px',
                 color: '#000',
               }}
             >
@@ -103,42 +140,49 @@ export const ViewDepartmentHeadBusinessTrip = () => {
             </Typography>
             <Typography
               sx={{
-                color: '#9B5AE1',
-                position: 'relative',
+                color: '#000',
                 ml: '16px',
+              }}
+            >
+              Departament rəhbərin göndərməsi
+            </Typography>
+            <Typography
+              sx={{
+                color: '#9B5AE1',
+                ml: '16px',
+                position: 'relative',
                 '&:after': {
                   content: '""',
                   display: 'block',
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-7px',
+                  left: '-13px',
                   height: '2px',
-                  width: 221,
+                  width: 129,
                   backgroundColor: '#9B5AE1',
                   mt: '30px',
                 },
               }}
             >
-              Departament rəhbərin göndərməsi
+              HR göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -149,131 +193,112 @@ export const ViewDepartmentHeadBusinessTrip = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>
-                Departament rəhbərin göndərməsi
-              </FormHeaderText>
+              <FormHeaderText>HR göndərməsi </FormHeaderText>
 
               <ActionButtonsContainer>
-                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
-                  <EditIcon
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
+                <IconButton aria-label="" onClick={handleClickOpen}>
+                  <InfoOutlinedIcon />
                 </IconButton>
-                <IconButton
-                  aria-label=""
-                  onClick={handleClickOpen}
-                  sx={{
-                    ml: '12px',
-                  }}
-                >
-                  <InfoOutlinedIcon
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
+                <IconButton>
+                  <DownloadIcon />
                 </IconButton>
               </ActionButtonsContainer>
             </FormHeader>
 
-            <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
-              <TableBody>
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{
-                      width: '244px',
-                      color: '#9E9E9E',
+            <FormInputsGroup>
+              <StartEndDateBox>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    disabled
+                    views={['day', 'month', 'year']}
+                    label="Başlama tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
                     }}
-                  >
-                    <Typography> Başlama tarixi</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ width: '537px', color: '#212121' }}
-                  >
-                    <Typography> 25/05/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{
-                      width: '244px',
-                      color: '#9E9E9E',
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{
+                          width: 432,
+                          border: '1px dashed rgba(0, 0, 0, 0.38);',
+                        }}
+                      />
+                    )}
+                    InputAdornmentProps={{ position: 'start' }}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    disabled
+                    views={['day', 'month', 'year']}
+                    label="Bitmə tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
                     }}
-                  >
-                    <Typography> Bitmə tarixi</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ width: '537px', color: '#212121' }}
-                  >
-                    <Typography> 21/06/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{
+                          width: 432,
+                          border: '1px dashed rgba(0, 0, 0, 0.38);',
+                        }}
+                      />
+                    )}
+                    InputAdornmentProps={{ position: 'start' }}
+                  />
+                </LocalizationProvider>
+              </StartEndDateBox>
 
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Skan edilmiş sənəd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>—</Typography>
-                  </FormTableCell>
-                </FormTableRow>
+              <FormControl
+                sx={{
+                  width: 875,
+                  border: '1px dashed rgba(0, 0, 0, 0.38);',
+                }}
+              >
+                <OutlinedInput
+                  id="file"
+                  name="file"
+                  value="Skan edilmiş sənəd"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AttachFileIcon />
+                    </InputAdornment>
+                  }
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton aria-label="clear file" onClick={() => {}}>
+                        <ClearIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                ></OutlinedInput>
+              </FormControl>
 
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Qeyd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>Sadə qeyd</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ borderBottom: 'none', color: '#9E9E9E' }}
-                  >
-                    <Typography> Nəticə</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ borderBottom: 'none', color: '#212121' }}
-                  >
-                    <Typography>HR göndərməsi</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-              </TableBody>
-            </Table>
+              <FormControl
+                sx={{
+                  width: '875px',
+                }}
+              >
+                <InputLabel htmlFor="select">Nəticə</InputLabel>
+                <Select id="select">
+                  <MenuItem value={'Departament rəhbərin göndərməsi'}>
+                    Təsdiqləndi
+                  </MenuItem>
+                  <MenuItem value={'Ləğv olundu'}>Ləğv olundu</MenuItem>
+                  <MenuItem value={'Gözlənilir'}>Test3</MenuItem>
+                </Select>
+              </FormControl>
+            </FormInputsGroup>
           </FormContainer>
+          <FormFooter>
+            <SaveButton>Yadda saxla və Bitir</SaveButton>
+          </FormFooter>
         </Container>
 
         <RequestDetailsDialog

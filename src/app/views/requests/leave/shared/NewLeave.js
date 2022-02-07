@@ -27,7 +27,7 @@ import {
   SaveButton,
   StartEndDateBox,
   FormHeaderText,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
 export const NewLeave = () => {
   const [value, setValue] = useState(new Date());

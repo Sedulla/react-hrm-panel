@@ -5,18 +5,22 @@ import {
   Typography,
   Breadcrumbs,
   Link as MuiLink,
-  Table,
-  TableBody,
   IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  OutlinedInput,
+  TableBody,
+  Table,
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
   Info as InfoIcon,
   KeyboardArrowDown,
-  Edit as EditIcon,
 } from '@mui/icons-material';
-import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
+import { PagesNav } from '../../../../styles/PagesNav.styled';
 import {
   PageContent,
   PageHeader,
@@ -24,6 +28,9 @@ import {
   InfoContainer,
   FormContainer,
   FormHeader,
+  FormInputsGroup,
+  FormFooter,
+  SaveButton,
   FormTableCell,
   FormTableRow,
   RequestDetailsDialog,
@@ -31,17 +38,17 @@ import {
   RequestDetailsDialogContent,
   RequestDetailsDialogActions,
   DialogCloseButton,
-  ActionButtonsContainer,
   FormHeaderText,
+  ActionButtonsContainer,
 } from '../../../../styles/Requests.styled';
 
-export const ViewDepartmentHeadBusinessTrip = () => {
+export const EditDepartmentHeadItSupply = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
-  const [isEdit, setIsEdit] = useState(false);
+  const [value, setValue] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -85,8 +92,22 @@ export const ViewDepartmentHeadBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Ezamiyyət</Typography>
-                <Typography color="text.primary"> Sorğunun təsviri</Typography>
+                <Typography
+                  sx={{
+                    color: '#424242',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  IT təchizat
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#424242',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Sorğunun redaktəsi
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -96,6 +117,7 @@ export const ViewDepartmentHeadBusinessTrip = () => {
           <Toolbar>
             <Typography
               sx={{
+                ml: '-10px',
                 color: '#000',
               }}
             >
@@ -104,8 +126,8 @@ export const ViewDepartmentHeadBusinessTrip = () => {
             <Typography
               sx={{
                 color: '#9B5AE1',
-                position: 'relative',
                 ml: '16px',
+                position: 'relative',
                 '&:after': {
                   content: '""',
                   display: 'block',
@@ -149,131 +171,62 @@ export const ViewDepartmentHeadBusinessTrip = () => {
 
           <FormContainer>
             <FormHeader>
-              <FormHeaderText>
-                Departament rəhbərin göndərməsi
-              </FormHeaderText>
+              <FormHeaderText>Departament rəhbərin göndərməsi</FormHeaderText>
 
               <ActionButtonsContainer>
-                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
-                  <EditIcon
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
-                </IconButton>
-                <IconButton
-                  aria-label=""
-                  onClick={handleClickOpen}
-                  sx={{
-                    ml: '12px',
-                  }}
-                >
-                  <InfoOutlinedIcon
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                    }}
-                  />
+                <IconButton aria-label="" onClick={handleClickOpen}>
+                  <InfoOutlinedIcon />
                 </IconButton>
               </ActionButtonsContainer>
             </FormHeader>
 
-            <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
-              <TableBody>
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{
-                      width: '244px',
-                      color: '#9E9E9E',
-                    }}
-                  >
-                    <Typography> Başlama tarixi</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ width: '537px', color: '#212121' }}
-                  >
-                    <Typography> 25/05/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
+            <FormInputsGroup>
+              <FormControl
+                sx={{
+                  width: 875,
+                  border: '1px dashed rgba(0, 0, 0, 0.38);',
+                }}
+              >
+                <OutlinedInput
+                  disabled
+                  id="file"
+                  name="file"
+                  value="Qeyd"
+                ></OutlinedInput>
+              </FormControl>
+              <FormControl
+                sx={{
+                  width: 875,
+                  border: '1px dashed rgba(0, 0, 0, 0.38);',
+                }}
+              >
+                <OutlinedInput
+                  disabled
+                  id="file"
+                  name="file"
+                  value="Nəticə mətni"
+                ></OutlinedInput>
+              </FormControl>
 
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{
-                      width: '244px',
-                      color: '#9E9E9E',
-                    }}
-                  >
-                    <Typography> Bitmə tarixi</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ width: '537px', color: '#212121' }}
-                  >
-                    <Typography> 21/06/2021</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Skan edilmiş sənəd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>—</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ color: '#9E9E9E' }}
-                  >
-                    <Typography> Qeyd</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ color: '#212121' }}
-                  >
-                    <Typography>Sadə qeyd</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-
-                <FormTableRow>
-                  <FormTableCell
-                    component="th"
-                    scope="row"
-                    sx={{ borderBottom: 'none', color: '#9E9E9E' }}
-                  >
-                    <Typography> Nəticə</Typography>
-                  </FormTableCell>
-                  <FormTableCell
-                    component="td"
-                    scope="row"
-                    sx={{ borderBottom: 'none', color: '#212121' }}
-                  >
-                    <Typography>HR göndərməsi</Typography>
-                  </FormTableCell>
-                </FormTableRow>
-              </TableBody>
-            </Table>
+              <FormControl
+                sx={{
+                  width: 875,
+                }}
+              >
+                <InputLabel htmlFor="select">Nəticə</InputLabel>
+                <Select id="select">
+                  <MenuItem value={'Departament rəhbərin göndərməsi'}>
+                    Departament rəhbərin göndərməsi
+                  </MenuItem>
+                  <MenuItem value={'HR göndərməsi'}>HR göndərməsi</MenuItem>
+                  <MenuItem value={'Test3'}>Test3</MenuItem>
+                </Select>
+              </FormControl>
+            </FormInputsGroup>
           </FormContainer>
+          <FormFooter>
+            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
+          </FormFooter>
         </Container>
 
         <RequestDetailsDialog

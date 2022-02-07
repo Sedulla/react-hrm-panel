@@ -21,7 +21,7 @@ import {
   InfoContainer,
   FormTableRow,
   FormTableCell,
-} from '../../../../styles/BusinessTrip.styled';
+} from '../../../../styles/Requests.styled';
 
 export const ViewBusinessTrip = () => {
   const [values, setValues] = useState({

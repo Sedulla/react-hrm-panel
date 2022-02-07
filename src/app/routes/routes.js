@@ -16,10 +16,7 @@ import { ProfileSettingsPage } from '../views/settings/ProfileSettingsPage';
 import { AuthGuard } from '../auth/AuthGuard';
 import { NotFoundPage } from '../views/sessions/NotFoundPage';
 
-import { ViewDepartmentHeadLeave } from '../views/requests/leave/share/ViewDepartmentHeadLeave';
-import { EditDepartmentHeadLeave } from '../views/requests/leave/share/EditDepartmentHeadLeave';
-import { ViewHrLeave } from '../views/requests/leave/share/ViewHrLeave';
-import { EditHrLeave } from '../views/requests/leave/share/EditHrLeave';
+import { EditITItSupply } from '../views/requests/it-supply/shared/EditITItSupply';
 
 export const AllPages = () => {
   const all_routes = [
@@ -44,7 +41,7 @@ export const AllPages = () => {
       element: (
         <NavContextProvider>
           <AppLayout>
-            <EditHrLeave />
+            <EditITItSupply />
           </AppLayout>
         </NavContextProvider>
       ),
