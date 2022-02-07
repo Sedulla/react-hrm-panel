@@ -38,7 +38,7 @@ export const AppLayout = ({ children }) => {
         <TopNav />
         <SideNav />
         <Main open={navOpen} sx={{ mt: '120px' }}>
-          <Loadable>{children}</Loadable>
+          {children}
         </Main>
       </LayoutRoot>
     </>

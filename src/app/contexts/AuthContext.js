@@ -55,7 +55,7 @@ const reducer = (state, action) => {
 
 export const AuthContext = createContext({
   ...initialState,
-  login: () => Promise.resolve(),
+  login: () => {},
   logout: () => {},
 });
 
@@ -63,14 +63,15 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (username, password) => {
+    const params = new URLSearchParams();
+    params.append('username', username);
+    params.append('password', password);
+
     return await axiosInstance
-      .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
-        username,
-        password,
-      })
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, params)
       .then((response) => {
         if (response.data.access_token) {
-          TokenService.setUser(response.data);
+          TokenService.setAccessToken(response.data);
 
           dispatch({
             type: 'LOGIN',
