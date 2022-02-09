@@ -1,13 +1,9 @@
 import React, { lazy } from 'react';
 import { Loadable } from '../../components/Loadable/Loadable';
 
-const ProfileSettingsPage = Loadable(lazy(() => import('./ProfileSettingsPage')));
-const AccountDetails = Loadable(
-  lazy(() => import('./shared/AccountDetails/AccountDetails'))
-);
-const SecurityAndLogin = Loadable(
-  lazy(() => import('./shared/SecurityAndLogin/SecurityAndLogin'))
-);
+import { ProfileSettingsPage } from './ProfileSettingsPage';
+import { AccountDetails } from './shared/AccountDetails/AccountDetails';
+import { SecurityAndLogin } from './shared/SecurityAndLogin/SecurityAndLogin';
 
 export const settingsRoutes = [
   {

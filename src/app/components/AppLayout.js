@@ -4,6 +4,7 @@ import { SideNav } from './Sidenav/Sidenav';
 import { TopNav } from './Topnav/TopNav';
 import { Loadable } from './Loadable/Loadable';
 import { drawerWidth } from '../utilities/constants';
+import { Outlet } from 'react-router-dom';
 
 const LayoutRoot = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -38,7 +39,9 @@ export const AppLayout = ({ children }) => {
         <TopNav />
         <SideNav />
         <Main open={navOpen} sx={{ mt: '120px' }}>
-          <Loadable>{children}</Loadable>
+          <Loadable>
+            <Outlet />
+          </Loadable>
         </Main>
       </LayoutRoot>
     </>

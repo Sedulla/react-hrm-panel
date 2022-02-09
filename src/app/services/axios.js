@@ -2,9 +2,9 @@ import axios from 'axios';
 import { TokenService } from './token.service';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://80.69.59.77:888/api',
+  baseURL: 'http://188.166.133.164/api',
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
 });
 
@@ -57,17 +57,3 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
-// return await axiosInstance
-// .post('/auth/login', {
-//   username,
-//   password,
-// })
-// .then((response) => {
-//   if (response.data.access_token) {
-//     TokenService.setUser(response.data);
-//   }
-
-//   return response.data;
-// });
-// };
