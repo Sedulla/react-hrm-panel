@@ -57,17 +57,3 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
-// return await axiosInstance
-// .post('/auth/login', {
-//   username,
-//   password,
-// })
-// .then((response) => {
-//   if (response.data.access_token) {
-//     TokenService.setUser(response.data);
-//   }
-
-//   return response.data;
-// });
-// };
