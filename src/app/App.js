@@ -17,7 +17,7 @@ const App = () => {
           <AuthProvider>
             {all_pages}
             <Routes>
-              <Route path="/" element={<Navigate to="/homepage" />} />
+              <Route path="/" element={<Navigate to="/settings" />} />
             </Routes>
           </AuthProvider>
         </ThemeProvider>

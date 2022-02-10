@@ -78,7 +78,7 @@ const reducer = (state, action) => {
 export const AuthContext = createContext({
   ...initialState,
   method: 'JWT',
-  login: () => Promise.resolve(),
+  login: () => {},
   logout: () => {},
 });
 

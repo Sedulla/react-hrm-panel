@@ -1,149 +1,79 @@
-import {
-  AppBar as MuiAppBar,
-  Grid as MuiGrid,
-  Grid,
-  Toolbar,
-  Typography,
-  styled,
-  Button,
-  Divider,
-  Box,
-} from '@mui/material';
+import { useState } from 'react';
+import { Toolbar, Typography } from '@mui/material';
 import { useNav } from '../../contexts/NavContextProvider';
 import { ReactComponent as SettingsIcon } from '../../assets/profile.settings-icon.svg';
 import { ReactComponent as SecurityIcon } from '../../assets/profile.security-icon.svg';
-import { AccountDetails } from './shared/AccountDetails/AccountDetails';
+import { PagesNav } from '../../styles/PagesNav.styled';
+import {
+  PageContent,
+  MainGrid,
+  ButtonsListGrid,
+  Container,
+  ButtonsBox,
+  SettingsButton,
+  SecurityButton,
+  VerticalDivider,
+} from '../../styles/Settings.styled';
+import { AccountDetails } from '././shared/AccountDetails/AccountDetails';
 import { SecurityAndLogin } from './shared/SecurityAndLogin/SecurityAndLogin';
-import { Routes, Route, Link } from 'react-router-dom';
-import { drawerWidth } from '../../utilities/constants';
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
-
-// MuiTypography style - color: '#424242' except nav?
-
-const MainGrid = styled(MuiGrid)(({ theme }) => ({
-  paddingTop: theme.spacing(16),
-}));
 
 export const ProfileSettingsPage = () => {
   const { navOpen } = useNav();
+  const [isSecurityPage, setIsSecurityPage] = useState(false);
 
   return (
     <>
-      <AppBar
-        position="fixed"
-        open={navOpen}
-        sx={{
-          backgroundColor: '#fff',
-          color: '#424242',
-          mt: '63px',
-          borderTop: '2px solid #e0e0e0',
-          borderBottom: '2px solid #e0e0e0',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar sx={{ margin: '1px' }}>
-          <Typography
-            noWrap
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
-            Profil / Hesab parametrləri
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <PageContent>
+        <PagesNav
+          position="fixed"
+          open={navOpen}
+          sx={{
+            backgroundColor: '#fff',
+            color: '#424242',
+            mt: '63px',
+            borderTop: '2px solid #e0e0e0',
+            borderBottom: '2px solid #e0e0e0',
+            boxShadow: 'none',
+          }}
+        >
+          <Toolbar>
+            <Typography
+              noWrap
+              sx={{
+                fontWeight: 'bold',
+              }}
+            >
+              Profil /{' '}
+              {isSecurityPage ? 'Təhlükəsizlik və Giriş' : 'Hesab parametrləri'}
+            </Typography>
+          </Toolbar>
+        </PagesNav>
 
-      <Box>
-        <MainGrid container>
-          <Grid item md={2}>
-            <Box>
-              <Button
-                startIcon={<SettingsIcon fill="red" />}
-                sx={[
-                  {
-                    width: '242px',
-                    height: '40px',
-                    color: '#424242',
-                    borderRadius: '4px',
-                    justifyContent: 'flex-start',
-                  },
-                  {
-                    '&:hover': {
-                      color: '#9B5AE1',
-                    },
-                  },
-                ]}
-              >
-                <Link
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                  to="/account"
+        <Container>
+          <MainGrid container>
+            <ButtonsListGrid item md={2}>
+              <ButtonsBox>
+                <SettingsButton
+                  startIcon={<SettingsIcon fill="red" />}
+                  onClick={() => setIsSecurityPage(false)}
                 >
                   Hesab parametləri
-                </Link>
-              </Button>
-              <br />
-              <Button
-                startIcon={<SecurityIcon fill="green" />}
-                sx={[
-                  {
-                    '&:hover': {
-                      color: '#9B5AE1',
-                    },
-                  },
-                  {
-                    color: '#424242',
-                    width: '242px',
-                    height: '40px',
-                    borderRadius: '4px',
-                    justifyContent: 'flex-start',
-                  },
-                ]}
-              >
-                <Link
-                  to="/security"
-                  style={{ color: 'inherit', textDecoration: 'none' }}
+                </SettingsButton>
+                <SecurityButton
+                  startIcon={<SecurityIcon fill="green" />}
+                  onClick={() => setIsSecurityPage(true)}
                 >
-                  {' '}
                   Təhlükəsizlik və Giriş
-                </Link>
-              </Button>
-            </Box>
-          </Grid>
+                </SecurityButton>
+              </ButtonsBox>
+            </ButtonsListGrid>
 
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{
-              marginTop: '-50px',
-              height: '81vh',
-              marginLeft: '60px',
-            }}
-          />
-        </MainGrid>
-      </Box>
+            <VerticalDivider orientation="vertical" flexItem md={1} />
+
+            {isSecurityPage ? <SecurityAndLogin /> : <AccountDetails />}
+          </MainGrid>
+        </Container>
+      </PageContent>
     </>
   );
 };

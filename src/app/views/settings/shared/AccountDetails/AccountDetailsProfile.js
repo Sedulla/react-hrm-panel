@@ -1,37 +1,27 @@
-import { Avatar, Box, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from '@mui/material';
+import {
+  ProfileContainer,
+  ProfileAvatar,
+} from '../../../../styles/Settings.styled';
 
 export const AccountDetailsProfile = () => {
   return (
     <>
-      <Box
-        sx={{
-          border: '1px solid #e0e0e0',
-          borderRadius: '4px',
-          padding: '35px',
-          width: '252px',
-          height: '195px',
-        }}
-      >
-        <Avatar
-          alt=""
-          src="/static/images/avatar/1.jpg"
-          sx={{ width: 64, height: 64, margin: '0 auto' }}
-        />
-        <Box sx={{ textAlign: 'center', marginTop: '14px' }}>
+      <ProfileContainer>
+        <ProfileAvatar alt="" src="/static/images/avatar/1.jpg" />
+        <Box>
           <Typography>Aydın Abbasov Mustafa</Typography>
           <Typography
-            variant="h5"
             sx={{
-              marginTop: '5px',
-              color: '#9E9E9E',
               fontSize: '0.875rem',
+              color: '#9E9E9E',
+              marginTop: '8px',
             }}
           >
             Sürücü
           </Typography>
         </Box>
-      </Box>
+      </ProfileContainer>
     </>
   );
 };

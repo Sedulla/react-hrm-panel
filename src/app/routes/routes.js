@@ -14,21 +14,13 @@ export const AllPages = () => {
     {
       path: '/',
       element: (
-        <AuthGuard>
-          <NavContextProvider>
-            <AppLayout />
-          </NavContextProvider>
-        </AuthGuard>
+        // <AuthGuard>
+        <NavContextProvider>
+          <AppLayout />
+        </NavContextProvider>
+        // </AuthGuard>
       ),
-      children: [
-        ...announcementsRoutes,
-        ...settingsRoutes,
-        ...requestsRoutes,
-        {
-          path: '/homepage',
-          element: <HomePage />,
-        },
-      ],
+      children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
     },
     ...sessionRoutes,
     {
