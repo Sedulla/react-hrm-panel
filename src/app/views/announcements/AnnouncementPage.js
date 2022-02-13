@@ -13,44 +13,11 @@ import { Add as AddIcon, KeyboardArrowDown } from '@mui/icons-material';
 import { AnnouncementsTable } from './shared/AnnouncementsTable';
 import { useNav } from '../../contexts/NavContextProvider';
 import { Link } from 'react-router-dom';
-import { drawerWidth } from '../../utilities/constants';
-
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const AddButton = styled(Button)(({ theme }) => ({
-  backgroundColor: '#9B5AE1',
-  color: theme.palette.common.white,
-  width: '111px',
-  height: '36px',
-  borderRadius: '4px',
-  fontWeight: '500',
-  padding: '6px 16px 6px 12px',
-
-  '&:hover': {
-    backgroundColor: '#8B3DCF',
-  },
-}));
+import { PageContent, PagesNav } from '../../styles/Global.styled';
+import { AddButton } from '../../styles/Announcements.styled';
 
 export const AnnouncementPage = () => {
   const { navOpen } = useNav();
-  const [addNewAncmt, setAddNewAncmt] = useState(false);
 
   function handleClick(event) {
     event.preventDefault();
@@ -60,7 +27,7 @@ export const AnnouncementPage = () => {
   return (
     <>
       <PageContent>
-        <AppBar
+        <PagesNav
           open={navOpen}
           position="fixed"
           sx={{
@@ -93,14 +60,15 @@ export const AnnouncementPage = () => {
               </Breadcrumbs>
             </div>
 
-            <Link className="link" to="/requests/announcement-add">
-              <AddButton onClick={() => setAddNewAncmt(!addNewAncmt)}>
+            <Link class="link" to="/announcements/add">
+              <AddButton>
                 <AddIcon sx={{ mr: 0.6 }} />
                 Əlavə et
               </AddButton>
             </Link>
           </Toolbar>
-        </AppBar>
+        </PagesNav>
+
         <AnnouncementsTable />
       </PageContent>
     </>

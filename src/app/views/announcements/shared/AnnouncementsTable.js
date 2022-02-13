@@ -7,39 +7,22 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  tableCellClasses,
   TableFooter,
   TablePagination,
   Paper,
-  styled,
-  Box,
-  IconButton,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
 } from '@mui/icons-material';
-import { Routes, Route, Link } from 'react-router-dom';
-import { EditAnnouncement } from './EditAnnouncement';
-import { ViewAnnouncement } from './ViewAnnouncement';
+import {
+  Container,
+  StyledTableCell,
+} from '../../../styles/Announcements.styled';
+import { Link } from 'react-router-dom';
 import { AnnouncementsTabPagination } from './AnnouncementsTabPagination';
 import { DeleteConfirmDIalog } from './DeleteConfirmDialog';
-
-const PageContent = styled(Box)(({ theme }) => ({
-  padding: '26px 16px 16px 16px',
-}));
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#F5F5F5    ',
-    color: '#424242',
-    fontWeight: '700',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 12,
-  },
-}));
 
 function newData(isOpen, id, title, desc, author, date) {
   return { isOpen, id, title, desc, author, date };
@@ -71,6 +54,13 @@ export const AnnouncementsTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [dialog, setDialog] = useState({
+    titleRow: '',
+  });
+
+  const handleDialog = (titleRow) => {
+    setDialog({ titleRow });
+  };
 
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -96,6 +86,9 @@ export const AnnouncementsTable = () => {
   const idRowRef = useRef();
 
   const handleDelete = (id) => {
+    const index = rows.findIndex((row) => row.id === id);
+
+    handleDialog(rows[index].title);
     idRowRef.current = id;
   };
 
@@ -111,7 +104,7 @@ export const AnnouncementsTable = () => {
 
   return (
     <>
-      <PageContent>
+      <Container>
         <TableContainer component={Paper}>
           <Table aria-label="announcements table">
             <TableHead>
@@ -143,7 +136,7 @@ export const AnnouncementsTable = () => {
                     >
                       {row.title}
                     </TableCell>
-                    <TableCell style={{ width: 450 }} align="left">
+                    <TableCell style={{ width: 250 }} align="left">
                       {row.desc}
                     </TableCell>
                     <TableCell style={{ width: 160 }} align="left">
@@ -152,36 +145,43 @@ export const AnnouncementsTable = () => {
                     <TableCell style={{ width: 160 }} align="left">
                       {row.date}
                     </TableCell>
-                    <TableCell style={{ width: 70 }} align="left">
-                      <Link to="/announcements/1">
+
+                    <TableCell style={{ width: 90 }} align="left">
+                      <Link to="/announcements/view/:id">
                         <VisibilityIcon sx={{ color: '#616161' }} />
                       </Link>
-                      <Link to="/requests/announcement-edit">
-                        <EditIcon sx={{ m: '0 4px', color: '#616161' }} />
+                      <Link to="/announcements/edit/:id">
+                        <EditIcon sx={{ m: '0 11px', color: '#616161' }} />
                       </Link>
-                      <IconButton
+                      <DeleteIcon
+                        sx={{
+                          color: '#616161',
+                          '&:hover:': {
+                            cursor: 'pointer',
+                          },
+                        }}
                         onClick={() => {
                           handleClickOpen();
                           handleDelete(row.id);
                         }}
-                      >
-                        <DeleteIcon sx={{ color: '#616161' }} />
-                      </IconButton>
+                      />
                     </TableCell>
                   </TableRow>
                 </>
               ))}
 
               {emptyRows > 0 && (
-                <TableRow style={{ height: 55.7 * emptyRows }}>
+                <TableRow key={nanoid()} style={{ height: 55.7 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
             </TableBody>
+
             <DeleteConfirmDIalog
               openDialog={openDialog}
               handleClose={handleClose}
               onDialog={areUSureDelete}
+              titleRow={dialog.titleRow}
             />
 
             <TableFooter>
@@ -197,7 +197,6 @@ export const AnnouncementsTable = () => {
                       'aria-label': 'rows per page',
                       style: {
                         borderBottom: '1px solid #000',
-                        // todo: align number with the left side of the rows per page select
                       },
                     },
                     native: true,
@@ -210,15 +209,7 @@ export const AnnouncementsTable = () => {
             </TableFooter>
           </Table>
         </TableContainer>
-      </PageContent>
-
-      <Routes>
-        <Route path="/announcement/1" element={<ViewAnnouncement />} />
-        <Route
-          path="/requests/announcement-edit"
-          element={<EditAnnouncement />}
-        />
-      </Routes>
+      </Container>
     </>
   );
 };

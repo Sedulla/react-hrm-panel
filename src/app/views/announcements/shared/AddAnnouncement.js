@@ -1,40 +1,35 @@
 import { useState } from 'react';
 import {
-  Box,
   FormControl,
   InputLabel,
   OutlinedInput,
-  styled,
   Toolbar,
   Typography,
   Select,
   MenuItem,
   Breadcrumbs,
   Link as MuiLink,
-} from '@mui/material';
-import {
   Container,
-  FormContainer,
-  FormHeader,
-  FormHeaderText,
-  PageContent,
-  PageHeader,
-  PagesNav,
-} from '../../../styles/Global.styled';
+} from '@mui/material';
+import { PagesNav } from '../../../styles/PagesNav.styled';
 import { useNav } from '../../../contexts/NavContextProvider';
 import { KeyboardArrowDown } from '@mui/icons-material';
+import {
+  FormButtonsBox,
+  FormContainer,
+  FormFooter,
+  FormHeader,
+  FormHeaderText,
+  FormInputsGroup,
+  PageContent,
+  PageHeader,
+} from '../../../styles/Global.styled';
+import {
+  ConcludeButton,
+  SaveButton,
+} from '../../../styles/Announcements.styled';
 
-const FormInputsGroup = styled(Box)(({ theme }) => ({
-  padding: '16px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '11px',
-  opacity: 0.5,
-}));
-
-export const EditAnnouncement = () => {
+export const AddAnnouncement = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
@@ -86,7 +81,7 @@ export const EditAnnouncement = () => {
                   Sorğular
                 </MuiLink>
                 <Typography color="text.primary"> Elan</Typography>
-                <Typography color="text.primary"> Redaktə</Typography>
+                <Typography color="text.primary"> Yeni</Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -127,43 +122,28 @@ export const EditAnnouncement = () => {
               <FormControl>
                 <InputLabel htmlFor="component-outlined">Adı</InputLabel>
                 <OutlinedInput
-                  sx={{
-                    width: 875,
-                    border: '1px dashed rgba(0, 0, 0, 0.42)',
-                  }}
+                  sx={{ width: 875 }}
                   id="component-outlined"
                   value={values.title}
                   onChange={handleInputChange('title')}
                   label="Title"
-                  disabled
                 />
               </FormControl>
               <FormControl>
                 <InputLabel htmlFor="component-outlined">Təsviri</InputLabel>
                 <OutlinedInput
-                  sx={{
-                    width: 875,
-                    border: '1px dashed rgba(0, 0, 0, 0.42)',
-                  }}
+                  sx={{ width: 875 }}
                   id="component-outlined"
                   value={values.desc}
                   onChange={handleInputChange('desc')}
                   label="Description"
-                  disabled
                 />
               </FormControl>
               <FormControl>
                 <InputLabel htmlFor="component-outlined">
                   Əməliyyatlar
                 </InputLabel>
-                <Select
-                  sx={{
-                    width: 875,
-                    border: '1px dashed rgba(0, 0, 0, 0.42)',
-                  }}
-                  label="Actions"
-                  disabled
-                >
+                <Select sx={{ width: 875 }} label="Actions">
                   <MenuItem value={''}>Təyin olunmadı</MenuItem>
                   <MenuItem value={'Paylaş'}>Paylaş</MenuItem>
                   <MenuItem value={'Test2'}>Test2</MenuItem>
@@ -172,6 +152,12 @@ export const EditAnnouncement = () => {
               </FormControl>
             </FormInputsGroup>
           </FormContainer>
+          <FormFooter>
+            <FormButtonsBox>
+              <SaveButton>Yadda Saxla</SaveButton>
+              <ConcludeButton>Sonlandır</ConcludeButton>
+            </FormButtonsBox>
+          </FormFooter>
         </Container>
       </PageContent>
     </>

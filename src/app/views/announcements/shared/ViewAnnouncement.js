@@ -1,58 +1,112 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Box,
-  styled,
   Table,
   TableBody,
   TableCell,
   TableRow,
   Typography,
   IconButton,
+  Breadcrumbs,
+  Toolbar,
+  Link as MuiLink,
 } from '@mui/material';
-import { useState } from 'react';
-import { Edit as EditIcon } from '@mui/icons-material';
-import { EditAnnouncement } from './EditAnnouncement';
-
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const Container = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-}));
-
-const FormContainer = styled(Box)(({ theme }) => ({
-  margin: '40px auto',
-  width: 907,
-  border: '1px solid #e0e0e0',
-  borderRadius: '4px',
-}));
-
-const FormHeader = styled(Box)(({ theme }) => ({
-  height: '60px',
-  backgroundColor: '#f5f5f5',
-  borderBottom: '1px solid #e0e0e0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '16px',
-}));
+import { Edit as EditIcon, KeyboardArrowDown } from '@mui/icons-material';
+import {
+  Container,
+  FormContainer,
+  FormHeader,
+  FormHeaderText,
+  PageContent,
+  PageHeader,
+  PagesNav,
+} from '../../../styles/Global.styled';
+import { useNav } from '../../../contexts/NavContextProvider';
+import {
+  TableContainer,
+  TableHeaderCell,
+} from '../../../styles/Announcements.styled';
 
 export const ViewAnnouncement = () => {
-  const [isEdit, setIsEdit] = useState(false);
+  const { navOpen } = useNav();
+
+  function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+  }
 
   return (
     <>
-      {isEdit ? (
-        <EditAnnouncement />
-      ) : (
-        <PageContent>
-          <Container>
-            <FormContainer>
-              <FormHeader>
-                <Typography sx={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
-                  Elanın təsviri
-                </Typography>
-                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
+      <PageContent>
+        <PagesNav
+          open={navOpen}
+          position="fixed"
+          sx={{
+            backgroundColor: '#fff',
+            color: '#424242',
+            mt: '63px',
+            borderTop: '2px solid #e0e0e0',
+            borderBottom: '2px solid #e0e0e0',
+            boxShadow: 'none',
+          }}
+        >
+          <Toolbar>
+            <div role="presentation" onClick={handleClick}>
+              <Breadcrumbs aria-label="breadcrumb">
+                <MuiLink
+                  underline="hover"
+                  color="inherit"
+                  href="/"
+                  sx={{
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row-reverse',
+                  }}
+                >
+                  <KeyboardArrowDown sx={{ ml: 0.5 }} />
+                  Sorğular
+                </MuiLink>
+                <Typography color="text.primary"> Elan</Typography>
+                <Typography color="text.primary"> Elanın təsviri</Typography>
+              </Breadcrumbs>
+            </div>
+          </Toolbar>
+        </PagesNav>
+
+        <PageHeader>
+          <Toolbar>
+            <Typography
+              sx={{
+                color: '#9B5AE1',
+                position: 'relative',
+                ml: '-10px',
+                '&:after': {
+                  content: '""',
+                  display: 'block',
+                  alignItems: 'center',
+                  position: 'absolute',
+                  top: '0',
+                  left: '-30px',
+                  height: '2px',
+                  width: 185,
+                  backgroundColor: '#9B5AE1',
+                  mt: '30px',
+                },
+              }}
+            >
+              Elanın formalaşdırılması
+            </Typography>
+          </Toolbar>
+        </PageHeader>
+
+        <Container>
+          <FormContainer>
+            <FormHeader>
+              <FormHeaderText> Elanın təsviri</FormHeaderText>
+
+              <Link to="/announcements/edit/:id" class="link">
+                <IconButton>
                   <EditIcon
                     sx={{
                       fontSize: '18px',
@@ -60,50 +114,40 @@ export const ViewAnnouncement = () => {
                     }}
                   />
                 </IconButton>
-              </FormHeader>
+              </Link>
+            </FormHeader>
 
-              <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
+            <TableContainer>
+              <Table>
                 <TableBody>
-                  <TableRow
-                    sx={{
-                      verticalAlign: 'top',
-                    }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{
-                        width: '244px',
-                        verticalAlign: 'top',
-                        color: '#9E9E9E',
-                      }}
-                    >
+                  <TableRow>
+                    <TableHeaderCell component="th" scope="row">
                       <Typography>Adı</Typography>
-                    </TableCell>
+                    </TableHeaderCell>
                     <TableCell
                       component="td"
                       scope="row"
-                      sx={{ width: '537px', color: '#212121' }}
+                      sx={{ width: 537, color: '#212121' }}
                     >
                       <Typography> lorem</Typography>
                     </TableCell>
                   </TableRow>
-                  <TableRow
-                    sx={{
-                      verticalAlign: 'top',
-                    }}
-                  >
-                    <TableCell
+                  <TableRow>
+                    <TableHeaderCell
                       component="th"
                       scope="row"
-                      sx={{ borderBottom: 'none', color: '#9E9E9E' }}
+                      sx={{ borderBottom: 'none' }}
                     >
                       <Typography> Təsviri</Typography>
-                    </TableCell>
+                    </TableHeaderCell>
                     <TableCell
                       component="td"
                       scope="row"
-                      sx={{ borderBottom: 'none', color: '#212121' }}
+                      sx={{
+                        width: 537,
+                        borderBottom: 'none',
+                        color: '#212121',
+                      }}
                     >
                       <Typography>
                         Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -115,10 +159,10 @@ export const ViewAnnouncement = () => {
                   </TableRow>
                 </TableBody>
               </Table>
-            </FormContainer>
-          </Container>
-        </PageContent>
-      )}
+            </TableContainer>
+          </FormContainer>
+        </Container>
+      </PageContent>
     </>
   );
 };
