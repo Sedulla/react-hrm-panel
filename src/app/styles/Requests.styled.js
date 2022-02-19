@@ -43,6 +43,7 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   justifyContent: 'flex-start',
   padding: '8px',
   borderRadius: '4px',
+  marginBottom: '16px', // space between the form and the info container
 }));
 
 const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
@@ -104,8 +105,6 @@ const FormFooter = styled(Box)(({ theme }) => ({
 
 // DIALOG STYLES
 
-const RequestDetailsDialog = styled(Dialog)(({ theme }) => ({}));
-
 const RequestDetailsDialogTitle = styled(DialogTitle)(({ theme }) => ({
   color: '#424242',
   fontSize: '1.125rem',
@@ -116,7 +115,14 @@ const RequestDetailsDialogContent = styled(DialogContent)(({ theme }) => ({
   padding: '0 16px',
 }));
 
-const RequestDetailsDialogActions = styled(DialogActions)(({ theme }) => ({}));
+const RequestDetailsDialogCloseButton = styled(MuiButton)(({ theme }) => ({
+  width: 68,
+  height: 36,
+  padding: '0px 16px',
+  backgroundColor: '#EEEEEE',
+  color: '#424242',
+  borderRadius: '4px',
+}));
 
 // BUTTONS STYLES
 
@@ -133,12 +139,51 @@ const SaveButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#4CAF50',
   border: '1px solid #4CAF50',
   color: '#fff',
-  marginTop: '16px',
-  position: 'absolute',
-  right: 0,
 
   '&:hover': {
     backgroundColor: '#4CAF50',
+  },
+}));
+
+const SearchForButton = styled(Button)(({ theme }) => ({
+  width: 105,
+  height: 36,
+  padding: '6px 16px 6px 12px',
+  borderRadius: '4px',
+  color: '#424242',
+  fontWeight: '500',
+  backgroundColor: '#fff',
+
+  '&:hover': {
+    backgroundColor: '#f5f5f5',
+  },
+  marginRight: '12px',
+}));
+
+const SearchButton = styled(Button)(({ theme }) => ({
+  width: 66,
+  height: 36,
+  backgroundColor: '#9B5AE1',
+  color: theme.palette.common.white,
+  borderRadius: '4px',
+  padding: '0 16px',
+  marginLeft: '12px',
+
+  '&:hover': {
+    backgroundColor: '#8B4BD0',
+  },
+}));
+
+const ClearButton = styled(Button)(({ theme }) => ({
+  width: 82,
+  height: 36,
+  backgroundColor: '#EEEEEE',
+  color: theme.palette.common.black,
+  borderRadius: '4px',
+  padding: '0 16px',
+
+  '&:hover': {
+    backgroundColor: '#E0E0E0',
   },
 }));
 
@@ -146,6 +191,21 @@ const DialogCloseButton = styled(Button)(({ theme }) => ({
   width: 68,
   backgroundColor: '#EEEEEE',
   color: '#424242',
+}));
+
+const TableContainer = styled(Box)(({ theme }) => ({
+  width: 907,
+  height: 148,
+  border: '1px solid #e0e0e0',
+  borderRadius: '4px',
+  padding: '0 16px',
+}));
+
+const TableHeaderCell = styled(TableCell)(({ theme }) => ({
+  width: 244,
+  paddingLeft: '0px',
+  verticalAlign: 'top',
+  color: '#9E9E9E',
 }));
 
 export {
@@ -161,11 +221,15 @@ export {
   FormTableRow,
   FormFooter,
   SaveButton,
+  SearchForButton,
   ActionButtonsContainer,
-  RequestDetailsDialog,
   RequestDetailsDialogTitle,
   RequestDetailsDialogContent,
-  RequestDetailsDialogActions,
   DialogCloseButton,
   StartEndDateBox,
+  SearchButton,
+  ClearButton,
+  TableContainer,
+  TableHeaderCell,
+  RequestDetailsDialogCloseButton,
 };

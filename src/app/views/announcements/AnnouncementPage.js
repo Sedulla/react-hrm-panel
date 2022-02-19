@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import {
-  AppBar as MuiAppBar,
-  styled,
   Toolbar,
   Typography,
   Breadcrumbs,
   Link as MuiLink,
-  Button,
-  Box,
 } from '@mui/material';
 import { Add as AddIcon, KeyboardArrowDown } from '@mui/icons-material';
 import { AnnouncementsTable } from './shared/AnnouncementsTable';
 import { useNav } from '../../contexts/NavContextProvider';
 import { Link } from 'react-router-dom';
-import { PageContent, PagesNav } from '../../styles/Global.styled';
-import { AddButton } from '../../styles/Announcements.styled';
+import { PageContent, PagesNav, AddButton } from '../../styles/Global.styled';
 
 export const AnnouncementPage = () => {
   const { navOpen } = useNav();

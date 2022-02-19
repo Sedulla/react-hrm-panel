@@ -229,7 +229,7 @@ export const EditDepartmentHeadItSupply = () => {
           </FormFooter>
         </Container>
 
-        <RequestDetailsDialog
+        {/* <RequestDetailsDialog
           open={open}
           onClose={handleClickOpen}
           aria-labelledby="dialog-title"
@@ -295,7 +295,7 @@ export const EditDepartmentHeadItSupply = () => {
               Bağla
             </DialogCloseButton>
           </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
+        </RequestDetailsDialog> */}
       </PageContent>
     </>
   );

@@ -18,8 +18,8 @@ import {
 } from '@mui/icons-material';
 import {
   Container,
-  StyledTableCell,
 } from '../../../styles/Announcements.styled';
+import { StyledTableCell } from '../../../styles/Global.styled';
 import { Link } from 'react-router-dom';
 import { AnnouncementsTabPagination } from './AnnouncementsTabPagination';
 import { DeleteConfirmDIalog } from './DeleteConfirmDialog';

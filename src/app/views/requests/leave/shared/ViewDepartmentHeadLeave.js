@@ -261,7 +261,7 @@ export const ViewDepartmentHeadLeave = () => {
           </FormContainer>
         </Container>
 
-        <RequestDetailsDialog
+        {/* <RequestDetailsDialog
           open={open}
           onClose={handleClickOpen}
           aria-labelledby="dialog-title"
@@ -327,7 +327,7 @@ export const ViewDepartmentHeadLeave = () => {
               Bağla
             </DialogCloseButton>
           </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
+        </RequestDetailsDialog> */}
       </PageContent>
     </>
   );

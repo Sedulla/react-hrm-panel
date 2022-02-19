@@ -276,7 +276,7 @@ export const ViewDepartmentHeadBusinessTrip = () => {
           </FormContainer>
         </Container>
 
-        <RequestDetailsDialog
+        {/* <RequestDetailsDialog
           open={open}
           onClose={handleClickOpen}
           aria-labelledby="dialog-title"
@@ -342,7 +342,7 @@ export const ViewDepartmentHeadBusinessTrip = () => {
               Bağla
             </DialogCloseButton>
           </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
+        </RequestDetailsDialog> */}
       </PageContent>
     </>
   );

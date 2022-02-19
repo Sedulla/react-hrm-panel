@@ -11,8 +11,14 @@ import {
   TableBody,
   TableCell,
   TableRow,
+  IconButton,
 } from '@mui/material';
-import { Info as InfoIcon, KeyboardArrowDown } from '@mui/icons-material';
+import {
+  Info as InfoIcon,
+  Edit as EditIcon,
+  InfoOutlined as InfoOutlinedIcon,
+  KeyboardArrowDown,
+} from '@mui/icons-material';
 import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
 
@@ -26,9 +32,11 @@ const PageHeader = styled(AppBar)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   flexDirection: 'row',
+  border: '1px solid #e0e0e0',
 }));
 
 const Container = styled(Box)(({ theme }) => ({
+  margin: '0 auto',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -60,15 +68,19 @@ const FormHeader = styled(Box)(({ theme }) => ({
   borderBottom: '1px solid #e0e0e0',
   display: 'flex',
   alignItems: 'center',
-  padding: '0px 20px',
+  justifyContent: 'space-between',
+  padding: '16px',
 }));
 
-export const DayOffView = () => {
+const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
+
+export const ViewHrDayOff = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleInputChange = (field) => (event) => {
     setValues({
@@ -90,6 +102,7 @@ export const DayOffView = () => {
           position="fixed"
           sx={{
             backgroundColor: '#fff',
+
             color: '#424242',
             mt: '63px',
             borderTop: '2px solid #e0e0e0',
@@ -125,6 +138,23 @@ export const DayOffView = () => {
           <Toolbar>
             <Typography
               sx={{
+                color: '#000',
+              }}
+            >
+              Sorğunun formalaşdırılması
+            </Typography>
+            <Typography
+              sx={{
+                color: '#000',
+                ml: '16px',
+              }}
+            >
+              Departament rəhbərin göndərməsi
+            </Typography>
+            <Typography
+              sx={{
+                color: '#9B5AE1',
+                ml: '16px',
                 position: 'relative',
                 '&:after': {
                   content: '""',
@@ -132,15 +162,15 @@ export const DayOffView = () => {
                   alignItems: 'center',
                   position: 'absolute',
                   top: '0',
-                  left: '-23px',
+                  left: '-7px',
                   height: '2px',
-                  width: 185,
+                  width: 129,
                   backgroundColor: '#9B5AE1',
-                  mt: '53px',
+                  mt: '30px',
                 },
               }}
             >
-              Sorğunun formalaşdırılması
+              HR göndərməsi
             </Typography>
           </Toolbar>
         </PageHeader>
@@ -172,6 +202,26 @@ export const DayOffView = () => {
               <Typography sx={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
                 Sorğunun formalaşdırılması
               </Typography>
+
+              <ActionButtonsContainer>
+                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
+                  <EditIcon
+                    sx={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                    }}
+                  />
+                </IconButton>
+                <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
+                  <InfoOutlinedIcon
+                    sx={{
+                      ml: '12px',
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                    }}
+                  />
+                </IconButton>
+              </ActionButtonsContainer>
             </FormHeader>
 
             <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>

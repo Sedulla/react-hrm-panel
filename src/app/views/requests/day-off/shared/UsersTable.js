@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { nanoid } from '@reduxjs/toolkit';
 import {
   Table,
   TableContainer,
@@ -6,67 +8,53 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  tableCellClasses,
   TableFooter,
   TablePagination,
   Paper,
-  styled,
-  IconButton,
-  Menu,
-  MenuItem,
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
-  MoreHoriz as MoreHorizIcon,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import { nanoid } from '@reduxjs/toolkit';
 import { TabPagination } from './TabPagination';
+import { StyledTableCell } from '../../../../styles/Global.styled';
+import { DeleteConfirmDIalog } from './DeleteConfirmDialog';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#F5F5F5    ',
-    color: '#424242',
-    fontWeight: '700',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 12,
-  },
-}));
-
-function newData(id, title, desc, date) {
-  return { id, title, desc, date };
+function newData(id, info, date, status) {
+  return { id, info, date, status };
 }
 
 export const UsersTable = () => {
   const [rows, setRows] = useState([
-    newData(nanoid(), 'Title 1', 'Desc 1', '01/01/2020'),
-    newData(nanoid(), 'Title 2', 'Desc 2', '02/02/2020'),
-    newData(nanoid(), 'Title 3', 'Desc 3', '03/03/2020'),
-    newData(nanoid(), 'Title 4', 'Desc 4', '04/04/2020'),
-    newData(nanoid(), 'Title 5', 'Desc 5', '05/05/2020'),
-    newData(nanoid(), 'Title 6', 'Desc 6', '06/06/2020'),
-    newData(nanoid(), 'Title 7', 'Desc 7', '07/07/2020'),
-    newData(nanoid(), 'Title 8', 'Desc 8', '08/08/2020'),
-    newData(nanoid(), 'Title 9', 'Desc 9', '09/09/2020'),
-    newData(nanoid(), 'Title 10', 'Desc 10', '10/10/2020'),
-    newData(nanoid(), 'Title 11', 'Desc 11', '11/11/2020'),
-    newData(nanoid(), 'Title 12', 'Desc 12', '12/12/2020'),
-    newData(nanoid(), 'Title 13', 'Desc 13', '13/13/2020'),
-    newData(nanoid(), 'Title 14', 'Desc 14', '14/14/2020'),
-    newData(nanoid(), 'Title 15', 'Desc 15', '15/15/2020'),
-    newData(nanoid(), 'Title 16', 'Desc 16', '16/16/2020'),
-    newData(nanoid(), 'Title 17', 'Desc 17', '17/17/2020'),
-    newData(nanoid(), 'Title 18', 'Desc 18', '18/18/2020'),
-    newData(nanoid(), 'Title 19', 'Desc 19', '19/19/2020'),
-    newData(nanoid(), 'Title 20', 'Desc 19', '19/19/2020'),
-    newData(nanoid(), 'Title 21', 'Desc 19', '19/19/2020'),
+    newData(nanoid(), 'User 1', '01/01/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 2', '02/02/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 3', '03/03/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 4', '04/04/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 5', '05/05/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 6', '06/06/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 7', '07/07/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 8', '08/08/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 9', '09/09/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 10', '10/10/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 11', '11/11/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 12', '12/12/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 13', '13/13/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 14', '14/14/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 15', '15/15/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 16', '16/16/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 17', '17/17/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 18', '18/18/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 19', '19/19/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 20', '19/19/2020', 'Təsdiqləndi'),
+    newData(nanoid(), 'User 21', '19/19/2020', 'Təsdiqləndi'),
   ]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialog, setDialog] = useState({
+    infoRow: '',
+  });
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -81,17 +69,37 @@ export const UsersTable = () => {
     setPage(0);
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleDialogData = (infoRow) => {
+    setDialog({ infoRow });
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+
+  const handleDialogClick = () => {
+    setOpenDialog(!openDialog);
+  };
+
+  const idRowRef = useRef();
+
+  const handleDelete = (id) => {
+    const index = rows.findIndex((row) => row.id === id);
+
+    handleDialogData(rows[index].info);
+    idRowRef.current = id;
+  };
+
+  const areUSureDelete = (choose) => {
+    if (choose) {
+      const newRows = [...rows];
+      setRows(newRows.filter((r) => r.id !== idRowRef.current));
+      handleDialogClick();
+    } else {
+      handleDialogClick();
+    }
   };
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table aria-label="announcements table">
+      <TableContainer component={Paper} sx={{ marginTop: '11px' }}>
+        <Table aria-label="users table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">Ad Soyad Ata</StyledTableCell>
@@ -111,53 +119,53 @@ export const UsersTable = () => {
                   <TableCell
                     component="th"
                     scope="row"
-                    style={{ minWidth: '308px' }}
+                    style={{ minWidth: 308 }}
                   >
-                    {row.title}
+                    {row.info}
                   </TableCell>
-                  <TableCell align="left" style={{ minWidth: '308px' }}>
-                    {row.desc}
-                  </TableCell>
-                  <TableCell align="left" style={{ minWidth: '308px' }}>
+                  <TableCell align="left" style={{ minWidth: 308 }}>
                     {row.date}
                   </TableCell>
+                  <TableCell align="left" style={{ minWidth: 308 }}>
+                    {row.status}
+                  </TableCell>
                   <TableCell align="left">
-                    <IconButton onClick={() => navigate('/setting')}>
+                    <Link to="/requests/day-off/view/:id">
                       <VisibilityIcon sx={{ color: '#616161' }} />
-                    </IconButton>
-                    <IconButton
-                      id="basic-button"
-                      aria-controls="basic-menu"
-                      aria-haspopup="true"
-                      aria-expanded={open ? 'true' : undefined}
-                      onClick={handleClick}
-                    >
-                      <MoreHorizIcon />
-                    </IconButton>
+                    </Link>
+                    <Link to="/requests/day-off/edit/department-head/">
+                      <EditIcon sx={{ m: '0 11px', color: '#616161' }} />
+                    </Link>
+                    <DeleteIcon
+                      sx={{
+                        color: '#616161',
+                        '&:hover:': {
+                          cursor: 'pointer',
+                        },
+                      }}
+                      onClick={() => {
+                        handleDialogClick();
+                        handleDelete(row.id);
+                      }}
+                    />
                   </TableCell>
                 </TableRow>
               </>
             ))}
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <MenuItem onClick={handleClose}>Sənədi yüklə</MenuItem>
-              <MenuItem onClick={handleClose}>Redaktə et</MenuItem>
-              <MenuItem onClick={handleClose}>Sil</MenuItem>
-            </Menu>
 
             {emptyRows > 0 && (
-              <TableRow style={{ height: 67 * emptyRows }}>
+              <TableRow style={{ height: 67 * emptyRows }} key={nanoid()}>
                 <TableCell colSpan={6} />
               </TableRow>
             )}
           </TableBody>
+
+          <DeleteConfirmDIalog
+            openDialog={openDialog}
+            handleClose={handleDialogClick}
+            onDialog={areUSureDelete}
+            infoRow={dialog.infoRow}
+          />
 
           <TableFooter>
             <TableRow>

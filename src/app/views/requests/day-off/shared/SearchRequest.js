@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   FormControl,
   Grid,
@@ -10,53 +9,28 @@ import {
   Select,
   styled,
 } from '@mui/material';
+import { ClearButton, SearchButton } from '../../../../styles/Requests.styled';
 
-const FormContainer = styled(Box)(({ theme }) => ({
+const SearchFormContainer = styled(Box)(({ theme }) => ({
   border: '1px solid #E0E0E0',
   borderRadius: '4px',
   padding: '12px 16px',
-  marginBottom: '16px',
+  margin: '11px 0 16px 0',
 }));
 
-const FormInputsGroup = styled(Box)(({ theme }) => ({}));
+const SearchFormInputsGroup = styled(Box)(({ theme }) => ({}));
 
-const FormFooter = styled(Box)(({ theme }) => ({
+const SearchFormFooter = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
 }));
 
-const ClearButton = styled(Button)(({ theme }) => ({
-  width: 82,
-  height: 36,
-  backgroundColor: '#EEEEEE',
-  color: theme.palette.common.black,
-  borderRadius: '4px',
-  padding: '0 16px',
-
-  '&:hover': {
-    backgroundColor: '#E0E0E0',
-  },
-}));
-const SearchButton = styled(Button)(({ theme }) => ({
-  width: 66,
-  height: 36,
-  backgroundColor: '#9B5AE1',
-  color: theme.palette.common.white,
-  borderRadius: '4px',
-  padding: '0 16px',
-  marginLeft: '12px',
-
-  '&:hover': {
-    backgroundColor: '#8B4BD0',
-  },
-}));
-
 export const SearchRequest = () => {
   return (
     <>
-      <FormContainer>
-        <FormInputsGroup>
+      <SearchFormContainer>
+        <SearchFormInputsGroup>
           <Grid container rowSpacing={1}>
             <Grid item xs={4}>
               <FormControl sx={{ minWidth: 343 }}>
@@ -122,7 +96,7 @@ export const SearchRequest = () => {
               </FormControl>
             </Grid>
           </Grid>
-        </FormInputsGroup>
+        </SearchFormInputsGroup>
 
         <Divider
           sx={{
@@ -134,11 +108,11 @@ export const SearchRequest = () => {
           }}
         />
 
-        <FormFooter>
+        <SearchFormFooter>
           <ClearButton>Təmizlə</ClearButton>
           <SearchButton>Axtar</SearchButton>
-        </FormFooter>
-      </FormContainer>
+        </SearchFormFooter>
+      </SearchFormContainer>
     </>
   );
 };

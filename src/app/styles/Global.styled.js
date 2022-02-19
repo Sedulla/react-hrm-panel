@@ -1,4 +1,14 @@
-import { styled, AppBar, Box, Typography } from '@mui/material';
+import {
+  styled,
+  AppBar,
+  Box,
+  Typography,
+  Button as MuiButton,
+  TableCell,
+  tableCellClasses,
+  Dialog,
+  DialogContentText,
+} from '@mui/material';
 import { drawerWidth } from '../utilities/constants';
 
 const PagesNav = styled(AppBar, {
@@ -25,13 +35,13 @@ const Container = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
+  padding: '16px',
 }));
 
 const FormContainer = styled(Box)(({ theme }) => ({
   width: 907,
   border: '1px solid #e0e0e0',
   borderRadius: '4px',
-  marginTop: '16px',
 }));
 
 const PageHeader = styled(AppBar)(({ theme }) => ({
@@ -82,6 +92,74 @@ const FormButtonsBox = styled(Box)(({ theme }) => ({
   right: 0,
 }));
 
+const AddButton = styled(MuiButton)(({ theme }) => ({
+  width: 111,
+  height: 36,
+  backgroundColor: '#9B5AE1',
+  color: theme.palette.common.white,
+  borderRadius: '4px',
+  fontWeight: '500',
+  padding: '6px 16px 6px 12px',
+
+  '&:hover': {
+    backgroundColor: '#8B3DCF',
+  },
+}));
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#F5F5F5    ',
+    color: '#424242',
+    fontWeight: '700',
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 12,
+  },
+}));
+
+// CONFIRM DIALOG STYLED COMPONENTS
+
+const DeleteConfirmDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-paperWidthSm': {
+    width: 370,
+    height: 171,
+  },
+}));
+
+const DeleteConfirmDialogContentText = styled(DialogContentText)(
+  ({ theme }) => ({
+    fontSize: '1.125rem',
+    color: '#424242',
+  })
+);
+
+const DeleteButton = styled(MuiButton)(({ theme }) => ({
+  backgroundColor: '#F44336',
+  color: '#fff',
+  width: 48,
+  height: 36,
+  padding: '0px 16px',
+  margin: '0px 12px',
+  borderRadius: '4px',
+  '&:hover': {
+    backgroundColor: '#F44336',
+  },
+}));
+
+const CancelButton = styled(MuiButton)(({ theme }) => ({
+  backgroundColor: '#EEEEEE',
+  color: '#424242',
+  width: 88,
+  height: 36,
+  borderRadius: 4,
+  margin: '0px 12px',
+  padding: '0px 16px',
+
+  '&:hover': {
+    backgroundColor: '#E0E0E0',
+  },
+}));
+
 export {
   PageContent,
   PagesNav,
@@ -93,4 +171,10 @@ export {
   FormInputsGroup,
   FormFooter,
   FormButtonsBox,
+  AddButton,
+  StyledTableCell,
+  DeleteConfirmDialog,
+  DeleteConfirmDialogContentText,
+  CancelButton,
+  DeleteButton,
 };

@@ -106,7 +106,7 @@ const SaveAndRedirectButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const DayOffDepartmentHeadEdit = () => {
+export const EditDepartmentHeadDayOff = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',

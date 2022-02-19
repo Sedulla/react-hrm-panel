@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import {
-  AppBar,
   Box,
-  styled,
   Toolbar,
   Typography,
   Breadcrumbs,
@@ -12,11 +10,6 @@ import {
   TableCell,
   TableRow,
   IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
 } from '@mui/material';
 import {
   InfoOutlined as InfoOutlinedIcon,
@@ -24,95 +17,33 @@ import {
   KeyboardArrowDown,
   Edit as EditIcon,
 } from '@mui/icons-material';
-import { PagesNav } from '../../../../styles/PagesNav.styled';
 import { useNav } from '../../../../contexts/NavContextProvider';
+import {
+  PagesNav,
+  Container,
+  FormContainer,
+  FormHeader,
+  FormHeaderText,
+  PageContent,
+  PageHeader,
+} from '../../../../styles/Global.styled';
+import {
+  InfoContainer,
+  ActionButtonsContainer,
+} from '../../../../styles/Requests.styled';
+import { RequestDetailsDialog } from './RequestDetailsDialog';
 
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const PageHeader = styled(AppBar)(({ theme }) => ({
-  position: 'relative',
-  height: 49,
-  backgroundColor: '#F5F5F5',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexDirection: 'row',
-  border: '1px solid #e0e0e0',
-}));
-
-const Container = styled(Box)(({ theme }) => ({
-  margin: '0 auto',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  gap: '16px',
-}));
-
-const InfoContainer = styled(Box)(({ theme }) => ({
-  width: 907,
-  height: 52,
-  backgroundColor: '#FAFAFA',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  marginTop: '16px',
-  padding: '8px',
-  borderRadius: '4px',
-}));
-
-const FormContainer = styled(Box)(({ theme }) => ({
-  width: 907,
-  border: '1px solid #e0e0e0',
-  borderRadius: '4px',
-}));
-
-const FormHeader = styled(Box)(({ theme }) => ({
-  height: '60px',
-  backgroundColor: '#f5f5f5',
-  borderBottom: '1px solid #e0e0e0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '16px',
-}));
-
-const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
-
-const RequestDetailsDialog = styled(Dialog)(({ theme }) => ({}));
-
-const RequestDetailsDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: '#424242',
-  fontSize: '1.125rem',
-  padding: '20px 16px',
-}));
-
-const RequestDetailsDialogContent = styled(DialogContent)(({ theme }) => ({
-  padding: '0 16px',
-}));
-
-const RequestDetailsDialogActions = styled(DialogActions)(({ theme }) => ({}));
-
-const DialogCloseButton = styled(Button)(({ theme }) => ({
-  width: 68,
-  height: 36,
-  padding: '0px 16px',
-  backgroundColor: '#EEEEEE',
-  color: '#424242',
-  borderRadius: '4px',
-}));
-
-export const DayOffDepartmentHeadView = () => {
+export const ViewDepartmentHeadDayOff = () => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
   });
   const { navOpen } = useNav();
   const [isEdit, setIsEdit] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(!open);
+  const handleClickDialog = () => {
+    setOpenDialog(!openDialog);
   };
 
   function handleClick(event) {
@@ -194,18 +125,17 @@ export const DayOffDepartmentHeadView = () => {
 
         <Container>
           <InfoContainer>
-            <InfoIcon />
+            <InfoIcon sx={{ m: '16px 10px 18px' }} />
             <Typography
               color="initial"
               sx={{
-                fontSize: '1rem',
-                ml: '8px',
+                fontSize: '1.05rem',
               }}
             >
               <Box
                 component="span"
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: '700',
                 }}
               >
                 Sorğunu açan şəxs:
@@ -216,9 +146,9 @@ export const DayOffDepartmentHeadView = () => {
 
           <FormContainer>
             <FormHeader>
-              <Typography sx={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
-                Sorğunun formalaşdırılması
-              </Typography>
+              <FormHeader>
+                <FormHeaderText>Sorğunun formalaşdırılması</FormHeaderText>
+              </FormHeader>
 
               <ActionButtonsContainer>
                 <IconButton aria-label="" onClick={() => setIsEdit(!isEdit)}>
@@ -231,7 +161,7 @@ export const DayOffDepartmentHeadView = () => {
                 </IconButton>
                 <IconButton
                   aria-label=""
-                  onClick={handleClickOpen}
+                  onClick={handleClickDialog}
                   sx={{
                     ml: '12px',
                   }}
@@ -246,7 +176,7 @@ export const DayOffDepartmentHeadView = () => {
               </ActionButtonsContainer>
             </FormHeader>
 
-            <Table sx={{ padding: '0 16px', borderCollapse: 'separate' }}>
+            <Table>
               <TableBody>
                 <TableRow
                   sx={{
@@ -320,70 +250,9 @@ export const DayOffDepartmentHeadView = () => {
         </Container>
 
         <RequestDetailsDialog
-          open={open}
-          onClose={handleClickOpen}
-          aria-labelledby="dialog-title"
-          aria-describedby="dialog-description"
-        >
-          <RequestDetailsDialogTitle id="dialog-title">
-            Sorğunun detalları
-          </RequestDetailsDialogTitle>
-          <RequestDetailsDialogContent dividers={'paper'}>
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    A.S.A
-                  </TableCell>
-                  <TableCell sx={{ width: 270 }}>Hüseyn Lətifov İ.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    Korporativ nömrə
-                  </TableCell>
-                  <TableCell>+994 55 434 43 43</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell
-                    sx={{ width: 270, fontWeight: 'bold' }}
-                    component="th"
-                  >
-                    Vəzifə
-                  </TableCell>
-                  <TableCell>Sürücü</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 'bold' }} component="th">
-                    Şöbə
-                  </TableCell>
-                  <TableCell>Əsas</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell
-                    sx={{ fontWeight: 'bold', borderBottom: 'none' }}
-                    component="th"
-                  >
-                    Tarix
-                  </TableCell>
-                  <TableCell sx={{ borderBottom: 'none' }}>
-                    25/05/2021
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </RequestDetailsDialogContent>
-          <RequestDetailsDialogActions>
-            <DialogCloseButton onClick={handleClickOpen}>
-              Bağla
-            </DialogCloseButton>
-          </RequestDetailsDialogActions>
-        </RequestDetailsDialog>
+          open={openDialog}
+          handleClick={handleClickDialog}
+        />
       </PageContent>
     </>
   );

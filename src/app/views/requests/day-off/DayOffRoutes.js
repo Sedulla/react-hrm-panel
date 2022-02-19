@@ -1,12 +1,12 @@
 import { lazy } from 'react';
 
 import { DayOffPage } from './DayOffPage';
-import { NewDayOff } from './shared/NewDayOff';
-import { DayOffView } from './shared/DayOffView';
-import { DayOffDepartmentHeadView } from './shared/DayOffDepartmentHeadView';
-import { DayOffDepartmentHeadEdit } from './shared/DayOffDepartmentHeadEdit';
-import { DayOffHrView } from './shared/DayOffHrView';
-import { DayOffHrEdit } from './shared/DayOffHrEdit';
+import { AddDayOff } from './shared/AddDayOff';
+import { ViewDayOff } from './shared/ViewDayOff';
+import { ViewDepartmentHeadDayOff } from './shared/ViewDepartmentHeadDayOff';
+import { EditDepartmentHeadDayOff } from './shared/EditDepartmentHeadDayOff';
+import { ViewHrDayOff } from './shared/ViewHrDayOff';
+import { EditHrDayOff } from './shared/EditHrDayOff';
 
 export const dayOffRequestRoutes = [
   {
@@ -14,27 +14,27 @@ export const dayOffRequestRoutes = [
     element: <DayOffPage />,
   },
   {
-    path: '/requests/day-off/new',
-    element: <NewDayOff />,
+    path: '/requests/day-off/add',
+    element: <AddDayOff />,
   },
   {
     path: '/requests/day-off/view/:id',
-    element: <DayOffView />,
+    element: <ViewDayOff />,
   },
   {
     path: '/requests/day-off/view/department-head/',
-    element: <DayOffDepartmentHeadView />,
+    element: <ViewDepartmentHeadDayOff />,
   },
   {
     path: '/requests/day-off/edit/department-head',
-    element: <DayOffDepartmentHeadEdit />,
+    element: <EditDepartmentHeadDayOff />,
   },
   {
     path: '/requests/day-off/view/hr',
-    element: <DayOffHrView />,
+    element: <ViewHrDayOff />,
   },
   {
     path: '/requests/day-off/edit/hr',
-    element: <DayOffHrEdit />,
+    element: <EditHrDayOff />,
   },
 ];

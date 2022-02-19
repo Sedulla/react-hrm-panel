@@ -6,34 +6,36 @@ import {
   Box,
 } from '@mui/material';
 import {
-  DeleteButton,
   CancelButton,
+  DeleteButton,
   DeleteConfirmDialog,
   DeleteConfirmDialogContentText,
-} from '../../../styles/Global.styled';
+} from '../../../../styles/Global.styled';
 
 export const DeleteConfirmDIalog = ({
   openDialog,
-  handleClose,
+  handleDialogClose,
   onDialog,
-  titleRow,
+  infoRow,
 }) => {
   return (
     <>
       <DeleteConfirmDialog
         open={openDialog}
-        onClose={handleClose}
+        onClose={handleDialogClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Elanın silinməsi'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {'sorğunun silinməsi'}
+        </DialogTitle>
         <Divider />
         <DialogContent>
           <DeleteConfirmDialogContentText id="alert-dialog-description">
             <Box component="span" sx={{ fontWeight: 'bold' }}>
-              {titleRow}
-            </Box>{' '}
-            elanı silmək istədiyinizə əminsiniz?
+              {infoRow}
+            </Box>
+            'ə aid sorğuyu silmək istədiyinizə əminsiniz?
           </DeleteConfirmDialogContentText>
         </DialogContent>
         <Divider />

@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import {
-  styled,
-  Box,
-  AppBar as MuiAppBar,
   Toolbar,
   Breadcrumbs,
   Link as MuiLink,
   Typography,
-  Button,
 } from '@mui/material';
 import {
   Add as AddIcon,
@@ -16,65 +12,18 @@ import {
 } from '@mui/icons-material';
 import { useNav } from '../../../contexts/NavContextProvider';
 import { Link } from 'react-router-dom';
-import { drawerWidth } from '../../../utilities/constants';
 import { UsersTable } from './shared/UsersTable';
 import { SearchRequest } from './shared/SearchRequest';
-
-const PageContent = styled(Box)(({ theme }) => ({}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const AddButton = styled(Button)(({ theme }) => ({
-  backgroundColor: '#9B5AE1',
-  color: theme.palette.common.white,
-  width: '111px',
-  height: '36px',
-  borderRadius: '4px',
-  fontWeight: '500',
-  padding: '6px 16px 6px 12px',
-  marginLeft: '12px',
-
-  '&:hover': {
-    backgroundColor: '#8B3DCF',
-  },
-}));
-
-const SearchButton = styled(Button)(({ theme }) => ({
-  width: 105,
-  height: 36,
-  padding: '6px 16px 6px 12px',
-  borderRadius: '4px',
-  color: '#424242',
-  fontWeight: '500',
-  backgroundColor: '#fff',
-
-  '&:hover': {
-    backgroundColor: '#f5f5f5',
-  },
-}));
-
-const Container = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.common.white,
-  padding: '16px',
-  marginTop: '11px',
-}));
-
-const ActionButtonsContainer = styled(Box)(({ theme }) => ({}));
+import {
+  AddButton,
+  Container,
+  PageContent,
+  PagesNav,
+} from '../../../styles/Global.styled';
+import {
+  ActionButtonsContainer,
+  SearchForButton,
+} from '../../../styles/Requests.styled';
 
 export const DayOffPage = () => {
   const { navOpen } = useNav();
@@ -88,7 +37,7 @@ export const DayOffPage = () => {
   return (
     <>
       <PageContent>
-        <AppBar
+        <PagesNav
           open={navOpen}
           position="fixed"
           sx={{
@@ -122,20 +71,21 @@ export const DayOffPage = () => {
             </div>
 
             <ActionButtonsContainer>
-              <SearchButton
+              <SearchForButton
                 startIcon={<SearchIcon />}
                 onClick={() => setIsVisibleSearch(!isVisibleSearch)}
               >
                 Axtarış
-              </SearchButton>
+              </SearchForButton>
 
-              <AddButton component={Link} to="/requests/new-request">
+              <AddButton component={Link} to="/requests/day-off/add">
                 <AddIcon sx={{ mr: 0.6 }} />
                 Əlavə et
               </AddButton>
             </ActionButtonsContainer>
           </Toolbar>
-        </AppBar>
+        </PagesNav>
+
         <Container>
           {isVisibleSearch && <SearchRequest />}
           <UsersTable />
