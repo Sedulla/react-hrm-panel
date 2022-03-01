@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": " React App Sample",
+  "short_name": "Hr Panel",
+  "name": "Human Resource Panel React App",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
