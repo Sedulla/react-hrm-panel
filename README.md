@@ -1,3 +1,17 @@
+# Project Photos
+
+## Login Page
+
+![login page](/docs/_images/login.png)
+
+## Profile Page
+
+![profile page](/docs/_images/profile.png)
+
+## Profile Page
+
+![requests dayoff page](/docs/_images/requests-dayoff.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
