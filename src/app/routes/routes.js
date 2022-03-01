@@ -2,6 +2,7 @@ import { AuthGuard } from '../auth/AuthGuard';
 import { NavContextProvider } from '../contexts/NavContextProvider';
 import { AppLayout } from '../components/AppLayout';
 
+import { homepageRoutes } from '../views/homepage/HomePageRoutes';
 import { coworkersRoutes } from '../views/coworkers/CoworkersRoutes';
 import { announcementsRoutes } from '../views/announcements/AnnouncementsRoutes';
 import { settingsRoutes } from '../views/settings/SettingsRoutes';
@@ -22,6 +23,7 @@ export const AllPages = () => {
         // </AuthGuard>
       ),
       children: [
+        ...homepageRoutes,
         ...coworkersRoutes,
         ...announcementsRoutes,
         ...settingsRoutes,

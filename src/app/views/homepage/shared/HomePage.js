@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled, Box } from '@mui/material';
 
 const CenterDiv = styled(Box)(({ theme }) => ({
@@ -9,11 +8,11 @@ const CenterDiv = styled(Box)(({ theme }) => ({
   minHeight: '50vh',
 }));
 
-export const Coworkers = () => {
+export const HomePage = () => {
   return (
     <>
       <CenterDiv>
-        <h1>Coworkers ...</h1>
+        <h1>Home Page ...</h1>
       </CenterDiv>
     </>
   );
