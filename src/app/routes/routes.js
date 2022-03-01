@@ -2,6 +2,7 @@ import { AuthGuard } from '../auth/AuthGuard';
 import { NavContextProvider } from '../contexts/NavContextProvider';
 import { AppLayout } from '../components/AppLayout';
 
+import { coworkersRoutes } from '../views/coworkers/CoworkersRoutes';
 import { announcementsRoutes } from '../views/announcements/AnnouncementsRoutes';
 import { settingsRoutes } from '../views/settings/SettingsRoutes';
 import { requestsRoutes } from '../views/requests/RequestsRoutes';
@@ -20,7 +21,12 @@ export const AllPages = () => {
         </NavContextProvider>
         // </AuthGuard>
       ),
-      children: [...announcementsRoutes, ...settingsRoutes, ...requestsRoutes],
+      children: [
+        ...coworkersRoutes,
+        ...announcementsRoutes,
+        ...settingsRoutes,
+        ...requestsRoutes,
+      ],
     },
     ...sessionRoutes,
     {

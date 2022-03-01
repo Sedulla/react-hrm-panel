@@ -1,6 +1,6 @@
 import { ReactComponent as HomeIcon } from '../assets/nav.home-icon.svg';
-import { ReactComponent as ColleaguesIcon } from '../assets/nav.colleagues-icon.svg';
-import { ReactComponent as NoticeIcon } from '../assets/nav.notice-icon.svg';
+import { ReactComponent as CoworkersIcon } from '../assets/nav.colleagues-icon.svg';
+import { ReactComponent as AnnouncementIcon } from '../assets/nav.notice-icon.svg';
 import { ReactComponent as RequestsIcon } from '../assets/nav.requests-icon.svg';
 import { ReactComponent as SettingsIcon } from '../assets/nav.settings-icon.svg';
 import { nanoid } from '@reduxjs/toolkit';
@@ -15,10 +15,10 @@ export const navigations = [
   },
   {
     id: nanoid(),
-    icon: <ColleaguesIcon />,
+    icon: <CoworkersIcon />,
     title: 'Əməkdaşlar',
     items: [],
-    path: '/employees',
+    path: '/coworkers',
   },
   {
     id: nanoid(),
@@ -60,7 +60,7 @@ export const navigations = [
   },
   {
     id: nanoid(),
-    icon: <NoticeIcon />,
+    icon: <AnnouncementIcon />,
     title: 'Elanlar',
     path: '/announcements',
     items: [
