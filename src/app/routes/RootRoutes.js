@@ -7,7 +7,7 @@ import requestsRoutes from '../app/views/requests/RequestsRoutes';
 const navigateRoute = [
   {
     path: '/',
-    element: () => <Navigate to="/settings" />,
+    element: () => <Navigate to="/settings/profile" />,
   },
 ];
 
