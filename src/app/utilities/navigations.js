@@ -34,27 +34,22 @@ export const navigations = [
       {
         id: nanoid(),
         title: 'Ezamiyyət',
-        path: '/requests/business-trip',
+        path: '/requests/business-trip/new',
       },
       {
         id: nanoid(),
         title: 'Məzuniyyət',
-        path: '/requests/leave',
-      },
-      {
-        id: nanoid(),
-        title: 'Qonaq',
-        path: '/requests/guest',
+        path: '/requests/leave/new',
       },
       {
         id: nanoid(),
         title: 'IT təchizat',
-        path: '/requests/it-supply',
+        path: '/requests/it-supply/new',
       },
       {
         id: nanoid(),
         title: 'Satınalma',
-        path: '/requests/purchase',
+        path: '/requests/purchase/new',
       },
     ],
   },

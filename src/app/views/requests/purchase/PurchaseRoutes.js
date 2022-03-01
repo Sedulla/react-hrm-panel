@@ -9,27 +9,27 @@ import { EditPurchasePurchase } from './shared/EditPurchasePurchase';
 
 export const purchaseRequestRoutes = [
   {
-    path: '/requests/business-trip/new',
+    path: '/requests/purchase/new',
     element: <NewPurchase />,
   },
   {
-    path: '/requests/business-trip/view/:id',
+    path: '/requests/purchase/view/:id',
     element: <ViewPurchase />,
   },
   {
-    path: '/requests/business-trip/view/department-head/',
+    path: '/requests/purchase/view/department-head/',
     element: <ViewDepartmentHeadPurchase />,
   },
   {
-    path: '/requests/business-trip/edit/department-head',
+    path: '/requests/purchase/edit/department-head',
     element: <EditDepartmentHeadPurchase />,
   },
   {
-    path: '/requests/business-trip/view/hr',
+    path: '/requests/purchase/view/hr',
     element: <ViewPurchasePurchase />,
   },
   {
-    path: '/requests/business-trip/edit/hr',
+    path: '/requests/purchase/edit/hr',
     element: <EditPurchasePurchase />,
   },
 ];

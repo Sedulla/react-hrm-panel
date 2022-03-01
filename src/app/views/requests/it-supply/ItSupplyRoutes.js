@@ -9,27 +9,27 @@ import { EditITItSupply } from './shared/EditITItSupply';
 
 export const itSupplyRequestRoutes = [
   {
-    path: '/requests/business-trip/new',
+    path: '/requests/it-supply/new',
     element: <NewItSupply />,
   },
   {
-    path: '/requests/business-trip/view/:id',
+    path: '/requests/it-supply/view/:id',
     element: <ViewItSupply />,
   },
   {
-    path: '/requests/business-trip/view/department-head/',
+    path: '/requests/it-supply/view/department-head/',
     element: <ViewDepartmentHeadItSupply />,
   },
   {
-    path: '/requests/business-trip/edit/department-head',
+    path: '/requests/it-supply/edit/department-head',
     element: <EditDepartmentHeadItSupply />,
   },
   {
-    path: '/requests/business-trip/view/hr',
+    path: '/requests/it-supply/view/hr',
     element: <ViewITItSupply />,
   },
   {
-    path: '/requests/business-trip/edit/hr',
+    path: '/requests/it-supply/edit/hr',
     element: <EditITItSupply />,
   },
 ];

@@ -9,27 +9,27 @@ import { EditHrLeave } from './shared/EditHrLeave';
 
 export const leaveRequestRoutes = [
   {
-    path: '/requests/business-trip/new',
+    path: '/requests/leave/new',
     element: <NewLeave />,
   },
   {
-    path: '/requests/business-trip/view/:id',
+    path: '/requests/leave/view/:id',
     element: <ViewLeave />,
   },
   {
-    path: '/requests/business-trip/view/department-head/',
+    path: '/requests/leave/view/department-head/',
     element: <ViewDepartmentHeadLeave />,
   },
   {
-    path: '/requests/business-trip/edit/department-head',
+    path: '/requests/leave/edit/department-head',
     element: <EditDepartmentHeadLeave />,
   },
   {
-    path: '/requests/business-trip/view/hr',
+    path: '/requests/leave/view/hr',
     element: <ViewHrLeave />,
   },
   {
-    path: '/requests/business-trip/edit/hr',
+    path: '/requests/leave/edit/hr',
     element: <EditHrLeave />,
   },
 ];
