@@ -5,7 +5,7 @@ import { ProfileSettingsPage } from './ProfileSettingsPage';
 
 export const settingsRoutes = [
   {
-    path: '/settings',
+    path: '/settings/profile',
     element: <ProfileSettingsPage />,
   },
 ];

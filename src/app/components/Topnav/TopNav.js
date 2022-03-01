@@ -11,6 +11,7 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import { useNav } from '../../contexts/NavContextProvider';
 import { Box } from '@mui/system';
 import { drawerWidth } from '../../utilities/constants';
+import { useNavigate } from 'react-router-dom';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -31,6 +32,7 @@ const AppBar = styled(MuiAppBar, {
 
 export const TopNav = () => {
   const { navOpen, handleToggleDrawer } = useNav();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -55,7 +57,7 @@ export const TopNav = () => {
             <MenuIcon />
           </IconButton>
           <Box sx={{ marginLeft: 'auto', alignItems: 'center' }}>
-            <Button>
+            <Button onClick={() => navigate('settings/profile')}>
               <Avatar
                 alt="profile img"
                 src=""
