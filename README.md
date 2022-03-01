@@ -8,7 +8,7 @@
 
 ![profile page](/docs/_images/profile.png)
 
-## Profile Page
+## Requests | Day Off Page
 
 ![requests dayoff page](/docs/_images/requests-dayoff.png)
 
