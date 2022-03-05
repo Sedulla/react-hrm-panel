@@ -26,9 +26,11 @@ import {
   FormFooter,
   SaveButton,
   StartEndDateBox,
+  FormHeaderText,
 } from '../../../../styles/Requests.styled';
+import { FormButtonsBox } from '../../../../styles/Global.styled';
 
-export const NewBusinessTrip = () => {
+export const NewPurchase = () => {
   const [value, setValue] = useState(new Date());
   const { navOpen } = useNav();
 
@@ -69,8 +71,20 @@ export const NewBusinessTrip = () => {
                   <KeyboardArrowDown sx={{ ml: 0.5 }} />
                   Sorğular
                 </MuiLink>
-                <Typography color="text.primary"> Ezamiyyət</Typography>
-                <Typography color="text.primary"> Yeni sorğu</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Satınalma
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Yeni sorğu
+                </Typography>
               </Breadcrumbs>
             </div>
           </Toolbar>
@@ -82,6 +96,7 @@ export const NewBusinessTrip = () => {
               sx={{
                 color: '#9B5AE1',
                 position: 'relative',
+                ml: '-10px',
                 '&:after': {
                   content: '""',
                   display: 'block',
@@ -103,63 +118,26 @@ export const NewBusinessTrip = () => {
 
         <Container>
           <FormContainer>
-            <FormHeader>Sorğunun formalaşdırılması</FormHeader>
+            <FormHeader>
+              <FormHeaderText> Sorğunun formalaşdırılması</FormHeaderText>
+            </FormHeader>
             <FormInputsGroup>
-              <StartEndDateBox>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    views={['day', 'month', 'year']}
-                    label="Başlama tarixi"
-                    inputFormat="MM/dd/yyyy"
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        helperText={null}
-                        sx={{ width: 432 }}
-                      />
-                    )}
-                    InputAdornmentProps={{ position: 'start' }}
-                  />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    views={['day', 'month', 'year']}
-                    label="Bitmə tarixi"
-                    inputFormat="MM/dd/yyyy"
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        helperText={null}
-                        sx={{ width: 432 }}
-                      />
-                    )}
-                    InputAdornmentProps={{ position: 'start' }}
-                  />
-                </LocalizationProvider>
-              </StartEndDateBox>
-
               <FormControl>
-                <InputLabel htmlFor="component-outlined">Növü</InputLabel>
+                <InputLabel htmlFor="description-of-problem">
+                  Problemin təsviri
+                </InputLabel>
                 <OutlinedInput
                   sx={{
                     width: 875,
                   }}
-                  id="component-outlined"
-                  label="Növü"
+                  id="description-of-problem"
                   type="text"
+                  placeholder="Sadə bir təsvir"
                 />
               </FormControl>
               <FormControl>
-                <InputLabel htmlFor="component-outlined">Nəticə</InputLabel>
-                <Select sx={{ width: '875px' }} label="Actions">
+                <InputLabel htmlFor="result">Nəticə</InputLabel>
+                <Select sx={{ width: '875px' }} id="result">
                   <MenuItem value={'Departament rəhbərin göndərməsi'}>
                     Departament rəhbərin göndərməsi
                   </MenuItem>
@@ -170,9 +148,9 @@ export const NewBusinessTrip = () => {
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveButton>
-              Yadda saxla və Yönləndir
-            </SaveButton>
+            <FormButtonsBox>
+              <SaveButton>Yadda saxla və Yönləndir</SaveButton>
+            </FormButtonsBox>
           </FormFooter>
         </Container>
       </PageContent>

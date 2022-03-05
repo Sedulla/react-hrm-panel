@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { NewItSupply } from './shared/NewItSupply';
+import { NewItSupply } from './shared/AddtSupply';
 import { ViewItSupply } from './shared/ViewItSupply';
 import { ViewDepartmentHeadItSupply } from './shared/ViewDepartmentHeadItSupply';
 import { EditDepartmentHeadItSupply } from './shared/EditDepartmentHeadItSupply';

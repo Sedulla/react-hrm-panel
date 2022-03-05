@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { NewPurchase } from './shared/NewPurchase';
+import { NewPurchase } from './shared/AddPurchase';
 import { ViewPurchase } from './shared/ViewPurchase';
 import { ViewDepartmentHeadPurchase } from './shared/ViewDepartmentHeadPurchase';
 import { EditDepartmentHeadPurchase } from './shared/EditDepartmentHeadPurchase';

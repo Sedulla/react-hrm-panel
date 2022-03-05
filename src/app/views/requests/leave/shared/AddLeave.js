@@ -28,8 +28,9 @@ import {
   StartEndDateBox,
   FormHeaderText,
 } from '../../../../styles/Requests.styled';
+import { FormButtonsBox } from '../../../../styles/Global.styled';
 
-export const NewItSupply = () => {
+export const NewLeave = () => {
   const [value, setValue] = useState(new Date());
   const { navOpen } = useNav();
 
@@ -75,7 +76,7 @@ export const NewItSupply = () => {
                     fontWeight: 'bold',
                   }}
                 >
-                  IT təchizat
+                  Məzuniyyət
                 </Typography>
                 <Typography
                   sx={{
@@ -121,21 +122,50 @@ export const NewItSupply = () => {
               <FormHeaderText> Sorğunun formalaşdırılması</FormHeaderText>
             </FormHeader>
             <FormInputsGroup>
+              <StartEndDateBox>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    views={['day', 'month', 'year']}
+                    label="Başlama tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{ width: 432 }}
+                      />
+                    )}
+                    InputAdornmentProps={{ position: 'start' }}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    views={['day', 'month', 'year']}
+                    label="Bitmə tarixi"
+                    inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        helperText={null}
+                        sx={{ width: 432 }}
+                      />
+                    )}
+                    InputAdornmentProps={{ position: 'start' }}
+                  />
+                </LocalizationProvider>
+              </StartEndDateBox>
+
               <FormControl>
-                <InputLabel htmlFor="description-of-problem">
-                  Problemin təsviri
-                </InputLabel>
-                <OutlinedInput
-                  sx={{
-                    width: 875,
-                  }}
-                  id="description-of-problem"
-                  type="text"
-                />
-              </FormControl>
-              <FormControl>
-                <InputLabel htmlFor="result">Nəticə</InputLabel>
-                <Select sx={{ width: '875px' }} id="result">
+                <InputLabel htmlFor="component-outlined">Nəticə</InputLabel>
+                <Select sx={{ width: '875px' }} label="Actions">
                   <MenuItem value={'Departament rəhbərin göndərməsi'}>
                     Departament rəhbərin göndərməsi
                   </MenuItem>
@@ -146,7 +176,9 @@ export const NewItSupply = () => {
             </FormInputsGroup>
           </FormContainer>
           <FormFooter>
-            <SaveButton>Yadda saxla və Yönləndir</SaveButton>
+            <FormButtonsBox>
+              <SaveButton>Yadda saxla və Yönləndir</SaveButton>
+            </FormButtonsBox>
           </FormFooter>
         </Container>
       </PageContent>

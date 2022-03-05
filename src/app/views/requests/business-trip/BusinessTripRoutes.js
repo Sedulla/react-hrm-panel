@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { NewBusinessTrip } from './shared/NewBusinessTrip';
+import { NewBusinessTrip } from './shared/AddBusinessTrip';
 import { ViewBusinessTrip } from './shared/ViewBusinessTrip';
 import { ViewDepartmentHeadBusinessTrip } from './shared/ViewDepartmentHeadBusinessTrip';
 import { EditDepartmentHeadBusinessTrip } from './shared/EditDepartmentHeadBusinessTrip';

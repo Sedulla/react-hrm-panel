@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { NewLeave } from './shared/NewLeave';
+import { NewLeave } from './shared/AddLeave';
 import { ViewLeave } from './shared/ViewLeave';
 import { ViewDepartmentHeadLeave } from './shared/ViewDepartmentHeadLeave';
 import { EditDepartmentHeadLeave } from './shared/EditDepartmentHeadLeave';
