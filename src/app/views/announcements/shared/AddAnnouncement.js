@@ -9,7 +9,6 @@ import {
   MenuItem,
   Breadcrumbs,
   Link as MuiLink,
-  Container,
 } from '@mui/material';
 import { PagesNav } from '../../../styles/PagesNav.styled';
 import { useNav } from '../../../contexts/NavContextProvider';
@@ -23,6 +22,7 @@ import {
   FormInputsGroup,
   PageContent,
   PageHeader,
+  Container,
 } from '../../../styles/Global.styled';
 import {
   ConcludeButton,
